@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -18,15 +17,13 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--cream);
   color: var(--charcoal);
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: var(--font-josefin), 'Josefin Sans', sans-serif;
   font-weight: 300;
   overflow-x: hidden;
-
 }
 
-
-.cormorant { font-family: 'Cormorant Garamond', serif; }
-.josefin   { font-family: 'Josefin Sans', sans-serif; }
+.cormorant { font-family: var(--font-cormorant), 'Cormorant Garamond', serif; }
+.josefin   { font-family: var(--font-josefin),   'Josefin Sans',       sans-serif; }
 
 /* Shimmer on italic hero text */
 @keyframes textShimmer {
