@@ -97,7 +97,7 @@ export default function Hero() {
           animate={mounted ? "visible" : "hidden"}
           className="flex gap-4 flex-wrap"
         >
-          <SlideBtn href="#categories" fill="var(--deep-maroon)" hover="var(--burnt-sienna)" textColor="var(--cream)">
+          <SlideBtn href="#categories">
             View Catalogue
           </SlideBtn>
           <OutlineBtn href="#contact">Request Pricing</OutlineBtn>
@@ -200,23 +200,31 @@ export default function Hero() {
 /* ── Helpers ─────────────────────────────── */
 
 function SlideBtn({
-  href, fill, hover, textColor, children,
+  href, children,
 }: {
-  href: string; fill: string; hover: string; textColor: string; children: React.ReactNode;
+  href: string; children: React.ReactNode;
 }) {
   return (
     <a
       href={href}
-      className="relative overflow-hidden inline-block text-[0.72rem] tracking-[0.22em] uppercase no-underline px-9 py-4 group"
-      style={{ background: fill, color: textColor, transition: "transform 0.3s" }}
-      onMouseEnter={(e) => { (e.currentTarget.style.transform = "translateY(-2px)"); }}
-      onMouseLeave={(e) => { (e.currentTarget.style.transform = "translateY(0)"); }}
+      className="relative overflow-hidden inline-block text-[0.72rem] tracking-[0.22em] uppercase no-underline"
+      style={{
+        background: "var(--deep-maroon)",
+        color: "var(--cream)",
+        padding: "15px 36px",
+        display: "inline-block",
+        transition: "background 0.3s, transform 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "var(--burnt-sienna)";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "var(--deep-maroon)";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+      }}
     >
-      <span
-        className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100"
-        style={{ background: hover, transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)" }}
-      />
-      <span className="relative z-10">{children}</span>
+      {children}
     </a>
   );
 }
@@ -225,19 +233,23 @@ function OutlineBtn({ href, children }: { href: string; children: React.ReactNod
   return (
     <a
       href={href}
-      className="relative overflow-hidden inline-block text-[0.72rem] tracking-[0.22em] uppercase no-underline px-9 py-4 group"
-      style={{ border: "1px solid var(--gold)", color: "var(--gold)" }}
+      className="inline-block text-[0.72rem] tracking-[0.22em] uppercase no-underline"
+      style={{
+        border: "1px solid var(--gold)",
+        color: "var(--gold)",
+        padding: "15px 36px",
+        transition: "background 0.3s, color 0.3s",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "var(--gold)";
+        (e.currentTarget as HTMLElement).style.color = "var(--cream)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "transparent";
+        (e.currentTarget as HTMLElement).style.color = "var(--gold)";
+      }}
     >
-      <span
-        className="absolute inset-0 origin-bottom scale-y-0 group-hover:scale-y-100"
-        style={{ background: "var(--gold)", transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)" }}
-      />
-      <span
-        className="relative z-10 group-hover:text-[var(--cream)]"
-        style={{ transition: "color 0.3s" }}
-      >
-        {children}
-      </span>
+      {children}
     </a>
   );
 }
