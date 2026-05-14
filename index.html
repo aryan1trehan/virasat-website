@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virasat — Ethnic Clothing Wholesale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE4;
+    --deep-maroon: #4A0E1E;
+    --gold: #C9933E;
+    --gold-light: #E8B96A;
+    --burnt-sienna: #8B3A2A;
+    --charcoal: #1C1C1C;
+    --text-muted: #7A6A5A;
+    --border: rgba(201,147,62,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor-dot {
+    position: fixed;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    mix-blend-mode: normal;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,147,62,0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+  }
+  .cursor-ring.hovering {
+    width: 52px; height: 52px;
+    border-color: var(--gold);
+  }
+
+  /* ── PAGE LOAD OVERLAY ── */
+  #page-loader {
+    position: fixed; inset: 0;
+    background: var(--deep-maroon);
+    z-index: 9990;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #page-loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300;
+    color: var(--cream); letter-spacing: 0.12em;
+    opacity: 0;
+    animation: loaderFadeIn 0.6s ease 0.2s forwards;
+  }
+  .loader-logo span { color: var(--gold); }
+  .loader-line {
+    width: 0; height: 1px;
+    background: var(--gold);
+    animation: loaderLine 1s ease 0.5s forwards;
+  }
+  @keyframes loaderFadeIn { to { opacity: 1; } }
+  @keyframes loaderLine { to { width: 160px; } }
+
+  /* ── SCROLL PROGRESS BAR ── */
+  #scroll-bar {
+    position: fixed; top: 0; left: 0;
+    height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 9997;
+    transition: width 0.05s linear;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(245,239,228,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  }
+  nav.scrolled {
+    padding: 14px 60px;
+    background: rgba(245,239,228,0.97);
+    box-shadow: 0 4px 30px rgba(74,14,30,0.08);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem; font-weight: 600;
+    color: var(--deep-maroon);
+    letter-spacing: 0.08em;
+    transition: font-size 0.4s;
+  }
+  nav.scrolled .logo { font-size: 1.45rem; }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 38px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--charcoal);
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--deep-maroon); color: var(--cream) !important;
+    padding: 10px 24px; letter-spacing: 0.18em;
+    transition: background 0.3s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--burnt-sienna) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+
+  /* Hero entrance animation classes */
+  .h-anim { opacity: 0; transform: translateY(30px); }
+  .h-anim.entered { opacity: 1; transform: translateY(0); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+
+  .hero-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow-line {
+    display: block; height: 1px; background: var(--gold);
+    width: 0;
+    transition: width 1s ease 1.6s;
+  }
+  .hero-eyebrow-line.entered { width: 36px; }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.08;
+    color: var(--deep-maroon);
+    margin-bottom: 28px;
+  }
+  h1 em { font-style: italic; color: var(--burnt-sienna); }
+  .hero-desc {
+    font-size: 0.88rem; line-height: 1.85; color: var(--text-muted);
+    max-width: 420px; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 18px; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--deep-maroon); color: var(--cream);
+    padding: 15px 36px; text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block; position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--burnt-sienna);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: 15px 36px; text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1); display: inline-block;
+    position: relative; overflow: hidden;
+  }
+  .btn-outline::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .btn-outline span { position: relative; z-index: 1; transition: color 0.3s; }
+  .btn-outline:hover::before { transform: scaleY(1); }
+  .btn-outline:hover span { color: var(--cream); }
+
+  /* Hero right */
+  .hero-right {
+    position: relative;
+    background: var(--deep-maroon);
+    overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%23C9933E' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='6' fill='%23C9933E'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    animation: patternDrift 20s linear infinite;
+  }
+  @keyframes patternDrift {
+    0%   { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+  .hero-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mandala-wrap {
+    position: relative; width: 420px; height: 420px;
+  }
+  .mandala-outer {
+    position: absolute; inset: 0;
+    animation: rotateSlow 40s linear infinite;
+    opacity: 0.25;
+  }
+  .mandala-inner {
+    position: absolute; inset: 50px;
+    animation: rotateReverse 28s linear infinite;
+    opacity: 0.18;
+  }
+  @keyframes rotateSlow    { to { transform: rotate(360deg); } }
+  @keyframes rotateReverse { to { transform: rotate(-360deg); } }
+
+  /* Gold particles */
+  .particles {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    animation: floatParticle var(--dur) ease-in-out var(--delay) infinite;
+  }
+  @keyframes floatParticle {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+    20%  { opacity: var(--op); }
+    80%  { opacity: var(--op); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
+  }
+
+  .hero-tag-box {
+    position: absolute; bottom: 50px; right: 50px;
+    background: rgba(201,147,62,0.18);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    padding: 24px 30px;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 2s, transform 0.8s ease 2s;
+  }
+  .hero-tag-box.entered { opacity: 1; transform: translateY(0); }
+  .hero-tag-box .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; line-height: 1;
+    color: var(--gold-light);
+  }
+  .hero-tag-box .label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,239,228,0.65); margin-top: 4px;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--gold);
+    padding: 13px 0;
+    overflow: hidden; white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex; gap: 0;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-strip:hover .marquee-inner { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item {
+    font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--deep-maroon); padding: 0 32px;
+  }
+  .marquee-item::after { content: '◆'; margin-left: 32px; opacity: 0.5; }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 100px 80px; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--deep-maroon);
+    margin-bottom: 20px;
+  }
+  h2 em { font-style: italic; color: var(--burnt-sienna); }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    background: #fff8f0;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .about-text p {
+    font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 18px;
+  }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; }
+  .stat-card { border-left: 2px solid var(--gold); padding-left: 18px; }
+  .stat-card .n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 600; color: var(--deep-maroon); line-height: 1;
+  }
+  .stat-card .d {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 5px;
+  }
+  .about-visual { position: relative; }
+  .about-img-block {
+    background: var(--deep-maroon);
+    aspect-ratio: 4/5; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-img-block svg { opacity: 0.15; }
+  /* Sheen sweep on about image */
+  .about-img-block::after {
+    content: '';
+    position: absolute; top: 0; left: -100%; bottom: 0; width: 60%;
+    background: linear-gradient(105deg, transparent 40%, rgba(201,147,62,0.1) 50%, transparent 60%);
+    animation: sheenSweep 4s ease-in-out 3s infinite;
+  }
+  @keyframes sheenSweep { 0%,100%{ left:-100%; } 50%{ left:140%; } }
+  .about-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(74,14,30,0.9));
+    padding: 32px 28px 24px;
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-style: italic;
+  }
+  .about-accent {
+    position: absolute; top: -18px; right: -18px;
+    width: 90px; height: 90px;
+    border: 2px solid var(--gold); opacity: 0.4;
+    animation: accentPulse 3s ease-in-out infinite;
+  }
+  @keyframes accentPulse {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  /* ── CATEGORIES ── */
+  #categories { background: var(--cream); }
+  .cat-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; }
+  .cat-header p { font-size: 0.85rem; color: var(--text-muted); max-width: 340px; line-height: 1.7; }
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cat-card {
+    cursor: none; position: relative; overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .cat-card:hover { transform: translateY(-8px); }
+  .cat-card:first-child { grid-row: span 2; }
+  .cat-img {
+    background: var(--deep-maroon);
+    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .cat-card:first-child .cat-img { aspect-ratio: 3/7; }
+  .cat-img-pattern {
+    position: absolute; inset: 0; opacity: 0.12;
+    background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 18px 18px;
+    transition: opacity 0.4s;
+  }
+  .cat-card:hover .cat-img-pattern { opacity: 0.22; }
+  .cat-img-icon { font-size: 3rem; opacity: 0.35; filter: grayscale(1); transition: opacity 0.4s, transform 0.5s; }
+  .cat-card:hover .cat-img-icon { opacity: 0.5; transform: scale(1.1); }
+  .cat-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(74,14,30,0.92));
+    padding: 36px 20px 20px;
+    transform: translateY(10px); opacity: 0;
+    transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .cat-card:hover .cat-overlay { transform: translateY(0); opacity: 1; }
+  .cat-overlay .view {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-light); text-decoration: none;
+  }
+  .cat-info { padding: 14px 4px; }
+  .cat-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--deep-maroon); }
+  .cat-info span { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--text-muted); }
+
+  /* ── WHY US ── */
+  #why { background: var(--deep-maroon); color: var(--cream); }
+  #why .section-label { color: var(--gold-light); }
+  #why .section-label::before { background: var(--gold-light); }
+  #why h2 { color: var(--cream); }
+  #why h2 em { color: var(--gold-light); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,147,62,0.15); margin-top: 52px;
+  }
+  .why-card {
+    background: rgba(74,14,30,0.6);
+    padding: 44px 36px;
+    transition: background 0.4s;
+    position: relative; overflow: hidden;
+  }
+  /* Gold top line reveal on hover */
+  .why-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  /* Diagonal shimmer on hover */
+  .why-card::after {
+    content: '';
+    position: absolute; top: -50%; left: -80%; width: 60%; height: 200%;
+    background: linear-gradient(105deg, transparent 40%, rgba(201,147,62,0.06) 50%, transparent 60%);
+    transform: skewX(-15deg);
+    transition: left 0.6s ease;
+  }
+  .why-card:hover::before { transform: scaleX(1); }
+  .why-card:hover::after  { left: 140%; }
+  .why-card:hover { background: rgba(201,147,62,0.08); }
+  .why-icon {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(201,147,62,0.4);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px; font-size: 1.3rem;
+    transition: border-color 0.35s, transform 0.35s;
+  }
+  .why-card:hover .why-icon { border-color: var(--gold); transform: scale(1.1) rotate(5deg); }
+  .why-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400;
+    color: var(--cream); margin-bottom: 12px;
+  }
+  .why-card p { font-size: 0.82rem; line-height: 1.8; color: rgba(245,239,228,0.6); }
+
+  /* ── PROCESS ── */
+  #process { background: #fff8f0; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 52px; position: relative;
+  }
+  /* Animated connector line */
+  .process-line {
+    position: absolute; top: 32px; left: 8%; right: 8%; height: 1px;
+    background: var(--border); overflow: hidden;
+  }
+  .process-line-fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+  }
+  .process-line-fill.filled { width: 100%; }
+  .step { padding: 0 24px; text-align: center; }
+  .step-num {
+    width: 64px; height: 64px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    background: #fff8f0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; color: var(--gold);
+    position: relative; z-index: 1;
+    transition: background 0.4s, color 0.4s, box-shadow 0.4s;
+  }
+  .step:hover .step-num {
+    background: var(--gold); color: var(--cream);
+    box-shadow: 0 0 0 6px rgba(201,147,62,0.12);
+  }
+  .step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400;
+    color: var(--deep-maroon); margin-bottom: 10px;
+  }
+  .step p { font-size: 0.8rem; line-height: 1.75; color: var(--text-muted); }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; }
+  .testi-card {
+    border: 1px solid var(--border); padding: 36px 32px;
+    position: relative;
+    transition: border-color 0.35s, transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
+  }
+  .testi-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(74,14,30,0.1);
+  }
+  .testi-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; line-height: 1; color: var(--gold);
+    opacity: 0.2; position: absolute; top: 12px; left: 24px;
+    transition: opacity 0.35s;
+  }
+  .testi-card:hover::before { opacity: 0.4; }
+  .testi-card p { font-size: 0.88rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 24px; }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 40px; height: 40px; background: var(--deep-maroon);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light); font-size: 0.8rem;
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    transition: transform 0.35s;
+  }
+  .testi-card:hover .testi-avatar { transform: scale(1.1); }
+  .testi-name { font-size: 0.78rem; font-weight: 400; color: var(--charcoal); letter-spacing: 0.06em; }
+  .testi-co   { font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.08em; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--deep-maroon);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  #contact .section-label { color: var(--gold-light); }
+  #contact .section-label::before { background: var(--gold-light); }
+  #contact h2 { color: var(--cream); }
+  #contact h2 em { color: var(--gold-light); }
+  #contact > div:first-child p { font-size: 0.9rem; line-height: 1.85; color: rgba(245,239,228,0.65); margin-bottom: 36px; }
+  .contact-info { display: flex; flex-direction: column; gap: 18px; }
+  .contact-info-item { display: flex; gap: 16px; align-items: flex-start; }
+  .ci-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,147,62,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0; margin-top: 2px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .contact-info-item:hover .ci-icon { border-color: var(--gold); background: rgba(201,147,62,0.1); }
+  .ci-text .label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .ci-text .val { font-size: 0.85rem; color: rgba(245,239,228,0.8); margin-top: 3px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,239,228,0.5); }
+  .form-field input, .form-field select, .form-field textarea {
+    background: rgba(245,239,228,0.06);
+    border: 1px solid rgba(201,147,62,0.2);
+    color: var(--cream);
+    padding: 13px 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(245,239,228,0.25); }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--gold);
+    background: rgba(245,239,228,0.09);
+  }
+  .form-field select option { background: var(--deep-maroon); }
+  .form-field textarea { resize: vertical; min-height: 110px; }
+  .btn-form {
+    background: var(--gold); color: var(--deep-maroon);
+    padding: 16px 40px; border: none; cursor: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    font-weight: 400; transition: background 0.3s, transform 0.3s;
+    align-self: flex-start; margin-top: 6px;
+    position: relative; overflow: hidden;
+  }
+  .btn-form::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold-light);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .btn-form span { position: relative; z-index: 1; }
+  .btn-form:hover::before { transform: scaleX(1); }
+  .btn-form:hover { transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f0508;
+    padding: 40px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(201,147,62,0.12);
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--cream); }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 0.68rem; letter-spacing: 0.12em; color: rgba(245,239,228,0.3); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,239,228,0.4); text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Shimmer on gold italic text */
+  @keyframes textShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .shimmer-text {
+    background: linear-gradient(90deg, var(--burnt-sienna) 30%, var(--gold-light) 50%, var(--burnt-sienna) 70%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 4s linear infinite;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+    nav { padding: 18px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 28px 60px; }
+    section { padding: 70px 28px; }
+    #about, #contact { grid-template-columns: 1fr; gap: 40px; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+    .cat-card:first-child { grid-row: span 1; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .cat-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-bar"></div>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">Virasat<span>.</span></div>
+  <div class="loader-line"></div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="logo">Virasat<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#categories">Catalogue</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow h-anim" style="--delay:0">
+      <span class="hero-eyebrow-line" id="eyebrow-line"></span>
+      Wholesale Ethnic Apparel
+    </div>
+    <h1 class="h-anim" style="--delay:1">Heritage Woven<br>Into Every <em class="shimmer-text">Thread</em></h1>
+    <p class="hero-desc h-anim" style="--delay:2">Premium ethnic clothing for retailers, boutiques & fashion brands. Sourced from India's finest artisan clusters — sarees, lehengas, sherwanis, kurta sets & beyond.</p>
+    <div class="hero-btns h-anim" style="--delay:3">
+      <a href="#categories" class="btn-primary"><span>View Catalogue</span></a>
+      <a href="#contact" class="btn-outline"><span>Request Pricing</span></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+    <div class="hero-visual">
+      <div class="mandala-wrap">
+        <!-- Outer ring (slow CW) -->
+        <svg class="mandala-outer" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="200" r="190" fill="none" stroke="#C9933E" stroke-width="1"/>
+          <circle cx="200" cy="200" r="155" fill="none" stroke="#C9933E" stroke-width="0.5"/>
+          <g stroke="#C9933E" stroke-width="0.8" fill="none">
+            <line x1="200" y1="10" x2="200" y2="390"/>
+            <line x1="10" y1="200" x2="390" y2="200"/>
+            <line x1="65" y1="65" x2="335" y2="335"/>
+            <line x1="335" y1="65" x2="65" y2="335"/>
+          </g>
+          <g fill="#C9933E">
+            <circle cx="200" cy="45" r="4"/><circle cx="200" cy="355" r="4"/>
+            <circle cx="45" cy="200" r="4"/><circle cx="355" cy="200" r="4"/>
+          </g>
+        </svg>
+        <!-- Inner ring (faster CCW) -->
+        <svg class="mandala-inner" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="140" fill="none" stroke="#C9933E" stroke-width="1"/>
+          <circle cx="150" cy="150" r="90" fill="none" stroke="#C9933E" stroke-width="0.5"/>
+          <circle cx="150" cy="150" r="40" fill="none" stroke="#C9933E" stroke-width="1"/>
+          <circle cx="150" cy="150" r="14" fill="none" stroke="#C9933E" stroke-width="1"/>
+          <g fill="#C9933E">
+            <circle cx="150" cy="11" r="3"/><circle cx="150" cy="289" r="3"/>
+            <circle cx="11"  cy="150" r="3"/><circle cx="289" cy="150" r="3"/>
+            <circle cx="57" cy="57" r="2"/><circle cx="243" cy="243" r="2"/>
+            <circle cx="243" cy="57" r="2"/><circle cx="57" cy="243" r="2"/>
+          </g>
+          <polygon points="150,60 165,130 235,130 178,172 198,242 150,200 102,242 122,172 65,130 135,130" fill="none" stroke="#C9933E" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-tag-box" id="hero-tag-box">
+      <div class="num">500+</div>
+      <div class="label">SKUs Available</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Sarees</span>
+    <span class="marquee-item">Lehengas</span>
+    <span class="marquee-item">Sherwanis</span>
+    <span class="marquee-item">Anarkali Suits</span>
+    <span class="marquee-item">Kurta Sets</span>
+    <span class="marquee-item">Bridal Wear</span>
+    <span class="marquee-item">Festive Collections</span>
+    <span class="marquee-item">Custom Orders</span>
+    <span class="marquee-item">Sarees</span>
+    <span class="marquee-item">Lehengas</span>
+    <span class="marquee-item">Sherwanis</span>
+    <span class="marquee-item">Anarkali Suits</span>
+    <span class="marquee-item">Kurta Sets</span>
+    <span class="marquee-item">Bridal Wear</span>
+    <span class="marquee-item">Festive Collections</span>
+    <span class="marquee-item">Custom Orders</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label">Our Story</div>
+    <h2>Crafted in India,<br><em>Worn Worldwide</em></h2>
+    <p>Virasat connects retailers and fashion businesses with India's most skilled artisan communities. From Banarasi silk weavers to Rajasthani block-print masters, every piece carries a legacy of craftsmanship.</p>
+    <p>We operate as a trusted B2B partner — offering competitive wholesale pricing, reliable logistics, consistent quality checks, and the flexibility to fulfil both standard and custom orders.</p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="n" data-count="12" data-suffix="+">0</div>
+        <div class="d">Years in Business</div>
+      </div>
+      <div class="stat-card">
+        <div class="n" data-count="800" data-suffix="+">0</div>
+        <div class="d">Retail Partners</div>
+      </div>
+      <div class="stat-card">
+        <div class="n" data-count="28" data-suffix="">0</div>
+        <div class="d">Artisan Clusters</div>
+      </div>
+      <div class="stat-card">
+        <div class="n" data-count="40" data-suffix="+">0</div>
+        <div class="d">Countries Served</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-img-block">
+      <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10 L190 100 L100 190 L10 100 Z" stroke="#C9933E" stroke-width="1.5"/>
+        <path d="M100 40 L160 100 L100 160 L40 100 Z" stroke="#C9933E" stroke-width="1"/>
+        <circle cx="100" cy="100" r="25" stroke="#C9933E" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="8" fill="#C9933E" opacity="0.6"/>
+        <line x1="100" y1="10" x2="100" y2="190" stroke="#C9933E" stroke-width="0.5"/>
+        <line x1="10" y1="100" x2="190" y2="100" stroke="#C9933E" stroke-width="0.5"/>
+      </svg>
+      <div class="about-img-label">Indian Artisan Heritage</div>
+    </div>
+    <div class="about-accent"></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="cat-header reveal">
+    <div>
+      <div class="section-label">Our Catalogue</div>
+      <h2>Product <em>Collections</em></h2>
+    </div>
+    <p>All categories available in bulk wholesale quantities with consistent sizing, colour matching and quality control.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#3A0D16;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">🥻</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Silk Sarees</h3><span>Banarasi · Kanjivaram · Chanderi</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#4A1A35;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">👗</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Lehengas</h3><span>Bridal · Party · Festival</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#1E3A4A;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">🧥</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Sherwanis</h3><span>Wedding · Festive · Formal</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#2A3A1A;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">👘</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Kurta Sets</h3><span>Cotton · Linen · Silk Blend</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#3A2A10;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">✨</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Anarkali Suits</h3><span>Floor Length · Knee Length</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#3A1A3A;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">🎨</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Custom & OEM</h3><span>Your Label · Your Design</span></div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="cat-img" style="background:#1A1A3A;">
+        <div class="cat-img-pattern"></div>
+        <div class="cat-img-icon">💎</div>
+        <div class="cat-overlay"><a href="#contact" class="view">Enquire Now →</a></div>
+      </div>
+      <div class="cat-info"><h3>Accessories</h3><span>Dupattas · Stoles · Jewellery</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Why Virasat</div>
+  <h2>The Partner <em>Difference</em></h2>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">⚡</div>
+      <h3>Fast Turnaround</h3>
+      <p>Standard orders dispatched within 7–10 business days. Dedicated logistics team with real-time shipment tracking across 40+ countries.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔍</div>
+      <h3>Quality Assured</h3>
+      <p>Every piece undergoes 3-stage quality inspection before dispatch. We guarantee colour consistency, finishing standards and accurate sizing.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🎯</div>
+      <h3>Low MOQ</h3>
+      <p>Start with as little as 20 pieces per design. Flexible minimums designed for boutiques, growing brands and new market entrants.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏺</div>
+      <h3>Artisan Sourced</h3>
+      <p>Direct relationships with 28 artisan clusters across Rajasthan, Varanasi, Surat, Lucknow and Tamil Nadu — no middlemen.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏷️</div>
+      <h3>Private Labelling</h3>
+      <p>Full white-label and OEM services. Custom tags, packaging, and branding available for orders above 100 units.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🤝</div>
+      <h3>Dedicated Account Manager</h3>
+      <p>Every partner gets a personal account manager for order updates, restock alerts, trend curation and seasonal previews.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div style="text-align:center; margin-bottom: 0;" class="reveal">
+    <div class="section-label" style="justify-content:center;">How It Works</div>
+    <h2>Simple <em>Onboarding</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-line"><div class="process-line-fill" id="process-line-fill"></div></div>
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3>Register & Enquire</h3>
+      <p>Fill out our short partner form with your business details and product interests.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3>Catalogue & Pricing</h3>
+      <p>Receive your personalised wholesale catalogue with tiered pricing and MOQ details.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3>Sample Order</h3>
+      <p>Order samples before committing to bulk. We offer priority sample turnaround in 5 days.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h3>Place & Scale</h3>
+      <p>Confirm your bulk order and let us handle production, QC and global delivery end-to-end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-label" style="justify-content:center;">Partner Voices</div>
+    <h2>What <em>Retailers</em> Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p>Virasat has been our primary ethnic wear supplier for 3 years. The quality is consistent and their team is incredibly responsive. Our saree collection has never looked better.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PM</div>
+        <div>
+          <div class="testi-name">Priya Menon</div>
+          <div class="testi-co">Owner, Silkthread Boutique — Dubai</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p>We were nervous about sourcing directly from India, but Virasat made it effortless. Excellent logistics, great packaging, and a product range that keeps our customers coming back.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RK</div>
+        <div>
+          <div class="testi-name">Ravi Kumar</div>
+          <div class="testi-co">Founder, Desi Drip — London</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <p>The custom labelling service is a game-changer. We now sell Virasat pieces under our own brand. MOQs are fair and the account manager always keeps us ahead of trends.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SA</div>
+        <div>
+          <div class="testi-name">Sara Al-Fahim</div>
+          <div class="testi-co">Buyer, Noor Fashion — Abu Dhabi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2>Start Your <em>Partnership</em></h2>
+    <p>Whether you're a boutique owner, online retailer or multi-store chain, we'd love to be your ethnic clothing partner. Fill the form or reach us directly.</p>
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <div class="ci-icon">📍</div>
+        <div class="ci-text">
+          <div class="label">Address</div>
+          <div class="val">12, Johri Bazaar Road, Jaipur, Rajasthan 302003</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📞</div>
+        <div class="ci-text">
+          <div class="label">Phone</div>
+          <div class="val">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">✉️</div>
+        <div class="ci-text">
+          <div class="label">Email</div>
+          <div class="val">wholesale@virasat.in</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">🕐</div>
+        <div class="ci-text">
+          <div class="label">Hours</div>
+          <div class="val">Mon – Sat: 9 AM – 7 PM IST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Ravi">
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Kumar">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Business / Company Name</label>
+        <input type="text" placeholder="Your Store or Brand">
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com">
+        </div>
+        <div class="form-field">
+          <label>Country</label>
+          <input type="text" placeholder="e.g. India, UAE, UK">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Category of Interest</label>
+        <select>
+          <option value="">Select a category</option>
+          <option>Silk Sarees</option>
+          <option>Lehengas</option>
+          <option>Sherwanis</option>
+          <option>Kurta Sets</option>
+          <option>Anarkali Suits</option>
+          <option>Custom / OEM</option>
+          <option>Multiple Categories</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your business, expected order volumes, and any specific requirements…"></textarea>
+      </div>
+      <button type="submit" class="btn-form"><span>Send Enquiry →</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Virasat<span>.</span></div>
+  <p>© 2025 Virasat Ethnic Wear Pvt. Ltd. · All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Catalogue</a>
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────
+   PAGE LOADER
+───────────────────────────────────────── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('page-loader').classList.add('hidden');
+    // Trigger hero entrance
+    triggerHeroEntrance();
+  }, 1200);
+});
+
+/* ─────────────────────────────────────────
+   HERO ENTRANCE — staggered cinematic
+───────────────────────────────────────── */
+function triggerHeroEntrance() {
+  const elems = document.querySelectorAll('.h-anim');
+  elems.forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add('entered');
+    }, i * 180);
+  });
+  // Eyebrow line
+  setTimeout(() => {
+    document.getElementById('eyebrow-line').classList.add('entered');
+  }, 100);
+  // Hero tag box
+  setTimeout(() => {
+    const box = document.getElementById('hero-tag-box');
+    if (box) box.classList.add('entered');
+  }, 900);
+}
+
+/* ─────────────────────────────────────────
+   CUSTOM CURSOR
+───────────────────────────────────────── */
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+let raf;
+
+document.addEventListener('mousemove', e => {
+  dotX = e.clientX; dotY = e.clientY;
+  dot.style.left  = dotX + 'px';
+  dot.style.top   = dotY + 'px';
+  if (!raf) raf = requestAnimationFrame(animateRing);
+});
+
+function animateRing() {
+  ringX += (dotX - ringX) * 0.12;
+  ringY += (dotY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  raf = requestAnimationFrame(animateRing);
+}
+
+// Hover state for interactive elements
+document.querySelectorAll('a, button, .cat-card, .why-card, .testi-card').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+});
+
+/* ─────────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────────── */
+const scrollBar = document.getElementById('scroll-bar');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total    = document.body.scrollHeight - window.innerHeight;
+  scrollBar.style.width = (scrolled / total * 100) + '%';
+}, { passive: true });
+
+/* ─────────────────────────────────────────
+   NAV SHRINK ON SCROLL
+───────────────────────────────────────── */
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL (staggered within groups)
+───────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, idx) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, idx * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─────────────────────────────────────────
+   STAT COUNTER ANIMATION
+───────────────────────────────────────── */
+function animateCount(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const start = performance.now();
+
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCount(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+/* ─────────────────────────────────────────
+   PROCESS LINE FILL
+───────────────────────────────────────── */
+const processSection = document.getElementById('process');
+const lineFill = document.getElementById('process-line-fill');
+const processObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      lineFill.classList.add('filled');
+      processObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+if (processSection) processObserver.observe(processSection);
+
+/* ─────────────────────────────────────────
+   GOLD PARTICLES IN HERO
+───────────────────────────────────────── */
+(function spawnParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1.5;
+    const x    = Math.random() * 100;
+    const y    = Math.random() * 100;
+    const dur  = (Math.random() * 5 + 5).toFixed(1) + 's';
+    const delay= (Math.random() * 6).toFixed(1) + 's';
+    const op   = (Math.random() * 0.3 + 0.1).toFixed(2);
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${x}%; top:${y}%;
+      --dur:${dur}; --delay:${delay}; --op:${op};
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ─────────────────────────────────────────
+   FORM SUBMIT
+───────────────────────────────────────── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn  = e.target.querySelector('.btn-form');
+  const span = btn.querySelector('span');
+  span.textContent = '✓ Enquiry Sent!';
+  btn.style.background = '#4caf50';
+  setTimeout(() => {
+    span.textContent = 'Send Enquiry →';
+    btn.style.background = '';
+  }, 3000);
+}
+</script>
+</body>
+</html>
