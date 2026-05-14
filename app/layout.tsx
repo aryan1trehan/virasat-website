@@ -18,9 +18,9 @@ const josefin = Josefin_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Virasat — Ethnic Clothing Wholesale",
+  title: "Global Trendwave Pvt. Ltd. — Wholesale Garment Sourcing & Ethical Textile Manufacturing India",
   description:
-    "Premium ethnic clothing for retailers, boutiques & fashion brands. Sourced from India's finest artisan clusters.",
+    "Global Trendwave Pvt. Ltd. is India's premier B2B garment sourcing and manufacturing company. SEDEX, GOTS & BSCI certified. Ethnic wear, woven garments, home textiles & custom OEM — export-ready worldwide.",
 };
 
 export default function RootLayout({

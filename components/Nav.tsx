@@ -46,7 +46,7 @@ export default function Nav() {
           flexShrink: 0,
         }}
       >
-        Virasat<span style={{ color: "var(--gold)" }}>.</span>
+        Global Trendwave<span style={{ color: "var(--gold)" }}>.</span>
       </div>
 
       {/* Links */}

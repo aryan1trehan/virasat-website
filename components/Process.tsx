@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const steps = [
-  { num: "01", title: "Register & Enquire",    body: "Fill out our short partner form with your business details and product interests." },
-  { num: "02", title: "Catalogue & Pricing",   body: "Receive your personalised wholesale catalogue with tiered pricing and MOQ details." },
-  { num: "03", title: "Sample Order",          body: "Order samples before committing to bulk. We offer priority sample turnaround in 5 days." },
-  { num: "04", title: "Place & Scale",         body: "Confirm your bulk order and let us handle production, QC and global delivery end-to-end." },
+  { num: "01", title: "Enquire & Connect",    body: "Fill our short partner form with your business details, target categories, and order volumes. Our team responds within 24 hours." },
+  { num: "02", title: "Catalogue & Costing", body: "Receive a personalised wholesale catalogue with transparent tiered pricing, MOQ details, and lead time estimates tailored to your market." },
+  { num: "03", title: "Sample & Approve",    body: "Order pre-production samples before committing to bulk. Rapid prototype turnaround with precise fit approval before full-scale manufacturing." },
+  { num: "04", title: "Produce & Export",    body: "Confirm your bulk order and we handle end-to-end production, multi-level QC, international documentation, and global delivery." },
 ];
 
 export default function Process() {

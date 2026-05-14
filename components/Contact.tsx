@@ -4,15 +4,15 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const info = [
-  { icon: "📍", label: "Address", val: "12, Johri Bazaar Road, Jaipur, Rajasthan 302003" },
-  { icon: "📞", label: "Phone",   val: "+91 98765 43210" },
-  { icon: "✉️", label: "Email",   val: "wholesale@virasat.in" },
-  { icon: "🕐", label: "Hours",   val: "Mon – Sat: 9 AM – 7 PM IST" },
+  { icon: "📍", label: "Office",             val: "M-26, Main Market, G.K. II, New Delhi – 110048\n4th Floor, Mangalam Plaza, RICCO Mansarovar, Jaipur – 302020" },
+  { icon: "🏭", label: "Manufacturing Unit", val: "Kiah, Plot No. 370, Sector 37, Phase VI, Udyog Vihar, Gurugram, Haryana – 122004" },
+  { icon: "📞", label: "Phone",              val: "+91-11-49488902  |  +91 92205 22551" },
+  { icon: "✉️", label: "Email",              val: "info@globaltrendwave.com" },
 ];
 
 const categories = [
-  "Silk Sarees", "Lehengas", "Sherwanis",
-  "Kurta Sets", "Anarkali Suits", "Custom / OEM", "Multiple Categories",
+  "Ethnic Womenswear", "Woven Garments", "Western Garments",
+  "Home Textiles", "Home Décor", "Denim", "Custom OEM / ODM", "Multiple Categories",
 ];
 
 export default function Contact() {
@@ -54,8 +54,9 @@ export default function Contact() {
           className="text-[0.9rem] leading-loose mb-9"
           style={{ color: "rgba(245,239,228,0.65)" }}
         >
-          Whether you're a boutique owner, online retailer or multi-store chain, we'd love
-          to be your ethnic clothing partner. Fill the form or reach us directly.
+          Whether you're a boutique brand, global retailer, or sourcing agency, we'd love
+          to be your trusted manufacturing and sourcing partner from India. Fill the form
+          or reach us directly.
         </p>
 
         <div className="flex flex-col gap-5">
@@ -78,7 +79,7 @@ export default function Contact() {
                 <div className="text-[0.62rem] tracking-[0.2em] uppercase" style={{ color: "var(--gold)" }}>
                   {item.label}
                 </div>
-                <div className="text-[0.85rem] mt-0.5" style={{ color: "rgba(245,239,228,0.8)" }}>
+                <div className="text-[0.85rem] mt-0.5" style={{ color: "rgba(245,239,228,0.8)", whiteSpace: "pre-line" }}>
                   {item.val}
                 </div>
               </div>

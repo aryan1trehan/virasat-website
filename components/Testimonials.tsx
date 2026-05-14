@@ -5,22 +5,22 @@ import { motion, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    quote:   "Virasat has been our primary ethnic wear supplier for 3 years. The quality is consistent and their team is incredibly responsive. Our saree collection has never looked better.",
-    initials:"PM",
-    name:    "Priya Menon",
-    company: "Owner, Silkthread Boutique — Dubai",
+    quote:   "Global Trendwave's design-to-delivery approach is unmatched. Their in-house team understood our brief immediately and the GOTS certification gave us full confidence in the sourcing chain for our European retail clients.",
+    initials:"AK",
+    name:    "Anika Klein",
+    company: "Sourcing Head, Bloom & Thread — Berlin",
   },
   {
-    quote:   "We were nervous about sourcing directly from India, but Virasat made it effortless. Excellent logistics, great packaging, and a product range that keeps our customers coming back.",
-    initials:"RK",
-    name:    "Ravi Kumar",
-    company: "Founder, Desi Drip — London",
+    quote:   "We needed a partner who could handle ethnic womenswear at scale with consistent quality and shorter lead times. Global Trendwave delivered on every front — their ERP visibility made our planning seamless.",
+    initials:"RM",
+    name:    "Ravi Mehta",
+    company: "Director, Omnika Fashion Group — Mumbai",
   },
   {
-    quote:   "The custom labelling service is a game-changer. We now sell Virasat pieces under our own brand. MOQs are fair and the account manager always keeps us ahead of trends.",
-    initials:"SA",
-    name:    "Sara Al-Fahim",
-    company: "Buyer, Noor Fashion — Abu Dhabi",
+    quote:   "Their OEM capability is exceptional. From tech pack creation to final packaging, the team handled every detail. BSCI certification made on-boarding with our compliance team completely straightforward.",
+    initials:"LB",
+    name:    "Laura Benoit",
+    company: "Buyer, Karl Legrand — Paris",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function Testimonials() {
           className="cormorant font-light"
           style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--deep-maroon)" }}
         >
-          What <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Retailers</em> Say
+          What <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Brands</em> Say
         </h2>
       </motion.div>
 

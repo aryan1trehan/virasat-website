@@ -4,13 +4,13 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const cats = [
-  { bg: "#3A0D16", icon: "🥻", name: "Silk Sarees",    sub: "Banarasi · Kanjivaram · Chanderi", span: true },
-  { bg: "#4A1A35", icon: "👗", name: "Lehengas",       sub: "Bridal · Party · Festival" },
-  { bg: "#1E3A4A", icon: "🧥", name: "Sherwanis",      sub: "Wedding · Festive · Formal" },
-  { bg: "#2A3A1A", icon: "👘", name: "Kurta Sets",     sub: "Cotton · Linen · Silk Blend" },
-  { bg: "#3A2A10", icon: "✨", name: "Anarkali Suits", sub: "Floor Length · Knee Length" },
-  { bg: "#3A1A3A", icon: "🎨", name: "Custom & OEM",  sub: "Your Label · Your Design" },
-  { bg: "#1A1A3A", icon: "💎", name: "Accessories",   sub: "Dupattas · Stoles · Jewellery" },
+  { bg: "#3A0D16", icon: "👘", name: "Ethnic Womenswear", sub: "Kurtas · Anarkalis · Festive Sets",         span: true },
+  { bg: "#4A1A35", icon: "🧵", name: "Woven Garments",    sub: "Suiting · Shirting · Premium Blends" },
+  { bg: "#1E3A4A", icon: "👗", name: "Western Garments",  sub: "Casual · Resort · Loungewear" },
+  { bg: "#2A3A1A", icon: "🛏️", name: "Home Textiles",    sub: "Bedding · Quilts · Table Linen" },
+  { bg: "#3A2A10", icon: "🏡", name: "Home Décor",        sub: "Cushions · Throws · Soft Furnishings" },
+  { bg: "#3A1A3A", icon: "👖", name: "Denim",             sub: "Washed · Distressed · Custom Fits" },
+  { bg: "#1A1A3A", icon: "🎨", name: "Custom OEM / ODM", sub: "Your Label · Tech Pack · Full Production" },
 ];
 
 export default function Categories() {
@@ -37,8 +37,8 @@ export default function Categories() {
           </h2>
         </div>
         <p className="text-[0.85rem] leading-relaxed max-w-xs" style={{ color: "var(--text-muted)" }}>
-          All categories available in bulk wholesale quantities with consistent sizing,
-          colour matching and quality control.
+          All categories available in bulk wholesale quantities with end-to-end quality
+          control, flexible MOQs, and export-ready packaging.
         </p>
       </motion.div>
 

@@ -1,6 +1,6 @@
 const items = [
-  "Sarees", "Lehengas", "Sherwanis", "Anarkali Suits",
-  "Kurta Sets", "Bridal Wear", "Festive Collections", "Custom Orders",
+  "Ethnic Womenswear", "Woven Garments", "Home Textiles", "Denim",
+  "Custom OEM / ODM", "Home Décor", "GOTS Certified", "SEDEX 4.0 Certified",
 ];
 
 export default function Marquee() {

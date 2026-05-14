@@ -11,16 +11,16 @@ export default function Footer() {
       }}
     >
       <div className="cormorant text-[1.4rem]" style={{ color: "var(--cream)" }}>
-        Virasat<span style={{ color: "var(--gold)" }}>.</span>
+        Global Trendwave<span style={{ color: "var(--gold)" }}>.</span>
       </div>
       <p
         className="text-[0.68rem] tracking-wider"
         style={{ color: "rgba(245,239,228,0.3)" }}
       >
-        © 2025 Virasat Ethnic Wear Pvt. Ltd. · All rights reserved.
+        © 2025 Global Trendwave Pvt. Ltd. · All rights reserved.
       </p>
       <div className="flex gap-6">
-        {["Privacy", "Terms", "Catalogue"].map((l) => (
+        {["Privacy", "Terms", "Website"].map((l) => (
           <a
             key={l}
             href="#"

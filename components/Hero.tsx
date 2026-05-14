@@ -52,7 +52,7 @@ export default function Hero() {
             className="text-[0.68rem] tracking-[0.35em] uppercase"
             style={{ color: "var(--gold)" }}
           >
-            Wholesale Ethnic Apparel
+            B2B Garment Sourcing &amp; Manufacturing — India
           </span>
         </motion.div>
 
@@ -69,10 +69,10 @@ export default function Hero() {
             color: "var(--deep-maroon)",
           }}
         >
-          Heritage Woven
+          Wave Into the
           <br />
-          Into Every{" "}
-          <em className="shimmer-text not-italic">Thread</em>
+          Future of{" "}
+          <em className="shimmer-text not-italic">Sourcing</em>
         </motion.h1>
 
         {/* Description */}
@@ -84,9 +84,9 @@ export default function Hero() {
           className="text-[0.88rem] leading-loose mb-11 max-w-md"
           style={{ color: "var(--text-muted)" }}
         >
-          Premium ethnic clothing for retailers, boutiques & fashion brands.
-          Sourced from India's finest artisan clusters — sarees, lehengas,
-          sherwanis, kurta sets & beyond.
+          India's trusted wholesale partner for ethical garment manufacturing,
+          ethnic womenswear, woven apparel & home textiles. SEDEX · GOTS · BSCI
+          certified. Export-ready across Europe, Middle East & North America.
         </motion.p>
 
         {/* Buttons */}
@@ -183,13 +183,13 @@ export default function Hero() {
             className="cormorant font-light leading-none"
             style={{ fontSize: "2.8rem", color: "var(--gold-light)" }}
           >
-            500+
+            25+
           </div>
           <div
             className="text-[0.65rem] tracking-[0.2em] uppercase mt-1"
             style={{ color: "rgba(245,239,228,0.65)" }}
           >
-            SKUs Available
+            Years of Industry Experience
           </div>
         </motion.div>
       </div>

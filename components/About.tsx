@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { n: 12,  suffix: "+", label: "Years in Business" },
-  { n: 800, suffix: "+", label: "Retail Partners"   },
-  { n: 28,  suffix: "",  label: "Artisan Clusters"  },
-  { n: 40,  suffix: "+", label: "Countries Served"  },
+  { display: "25+",  label: "Years of Experience"    },
+  { display: "4",    label: "Global Certifications"  },
+  { display: "4",    label: "Export Markets"         },
+  { display: "360°", label: "Design to Delivery"     },
 ];
 
 export default function About() {
@@ -39,22 +39,25 @@ export default function About() {
           style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--deep-maroon)" }}
         >
           Crafted in India,<br />
-          <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Worn Worldwide</em>
+          <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Trusted Worldwide</em>
         </h2>
         <p className="text-[0.9rem] leading-loose mb-4" style={{ color: "var(--text-muted)" }}>
-          Virasat connects retailers and fashion businesses with India's most skilled artisan
-          communities. From Banarasi silk weavers to Rajasthani block-print masters, every
-          piece carries a legacy of craftsmanship.
+          Global Trendwave Pvt. Ltd. is a premier garment sourcing and manufacturing company
+          founded by Mr. Mayyank Malhotra and Mr. Kishan Maheshwari. With over two decades
+          of combined expertise in the textile and apparel industry, we bridge the gap between
+          global demand and reliable, ethical supply.
         </p>
         <p className="text-[0.9rem] leading-loose" style={{ color: "var(--text-muted)" }}>
-          We operate as a trusted B2B partner — offering competitive wholesale pricing,
-          reliable logistics, consistent quality checks, and the flexibility to fulfil both
-          standard and custom orders.
+          Headquartered in New Delhi and Jaipur with a manufacturing unit in Gurugram, we
+          serve leading ethnic womenswear retailers across India and international export
+          clients including Omnika, Karl Legrand, and other prestigious global brands —
+          delivering cost-effective, sustainable, and design-forward solutions from concept
+          to shipment.
         </p>
 
         <div className="grid grid-cols-2 gap-7 mt-10">
           {stats.map((s) => (
-            <StatCard key={s.label} {...s} inView={inView} />
+            <StatCard key={s.label} display={s.display} label={s.label} inView={inView} />
           ))}
         </div>
       </motion.div>
@@ -70,7 +73,6 @@ export default function About() {
           className="relative overflow-hidden flex items-center justify-center"
           style={{ background: "var(--deep-maroon)", aspectRatio: "4/5" }}
         >
-          {/* Sheen sweep */}
           <div
             className="absolute top-0 bottom-0 w-3/5 pointer-events-none"
             style={{
@@ -96,7 +98,7 @@ export default function About() {
               fontSize: "1.4rem",
             }}
           >
-            Indian Artisan Heritage
+            Ethical Manufacturing Since 1999
           </div>
         </div>
         <div
@@ -108,7 +110,6 @@ export default function About() {
   );
 }
 
-/* ── Helpers ── */
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 mb-3 text-[0.65rem] tracking-[0.35em] uppercase" style={{ color: "var(--gold)" }}>
@@ -118,31 +119,32 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function StatCard({ n, suffix, label, inView }: { n: number; suffix: string; label: string; inView: boolean }) {
-  const [count, setCount] = useState(0);
+function StatCard({ display, label, inView }: { display: string; label: string; inView: boolean }) {
+  const [shown, setShown] = useState("0");
   const started = useRef(false);
+  const numeric = parseInt(display);
+  const isNumeric = !isNaN(numeric) && !display.includes("°");
 
   useEffect(() => {
     if (!inView || started.current) return;
     started.current = true;
+    if (!isNumeric) { setShown(display); return; }
+    const suffix = display.replace(String(numeric), "");
     const duration = 1400;
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.round(eased * n));
+      setShown(Math.round(eased * numeric) + suffix);
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-  }, [inView, n]);
+  }, [inView, display, isNumeric, numeric]);
 
   return (
     <div style={{ borderLeft: "2px solid var(--gold)", paddingLeft: 18 }}>
-      <div
-        className="cormorant font-semibold leading-none"
-        style={{ fontSize: "2.4rem", color: "var(--deep-maroon)" }}
-      >
-        {count}{suffix}
+      <div className="cormorant font-semibold leading-none" style={{ fontSize: "2.4rem", color: "var(--deep-maroon)" }}>
+        {isNumeric ? shown : display}
       </div>
       <div className="text-[0.68rem] tracking-[0.18em] uppercase mt-1" style={{ color: "var(--text-muted)" }}>
         {label}

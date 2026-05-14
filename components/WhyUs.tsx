@@ -4,12 +4,12 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const cards = [
-  { icon: "⚡", title: "Fast Turnaround",          body: "Standard orders dispatched within 7–10 business days. Dedicated logistics team with real-time shipment tracking across 40+ countries." },
-  { icon: "🔍", title: "Quality Assured",           body: "Every piece undergoes 3-stage quality inspection before dispatch. We guarantee colour consistency, finishing standards and accurate sizing." },
-  { icon: "🎯", title: "Low MOQ",                   body: "Start with as little as 20 pieces per design. Flexible minimums designed for boutiques, growing brands and new market entrants." },
-  { icon: "🏺", title: "Artisan Sourced",           body: "Direct relationships with 28 artisan clusters across Rajasthan, Varanasi, Surat, Lucknow and Tamil Nadu — no middlemen." },
-  { icon: "🏷️", title: "Private Labelling",        body: "Full white-label and OEM services. Custom tags, packaging, and branding available for orders above 100 units." },
-  { icon: "🤝", title: "Dedicated Account Manager", body: "Every partner gets a personal account manager for order updates, restock alerts, trend curation and seasonal previews." },
+  { icon: "🏅", title: "Global Certifications",      body: "SEDEX 4.0 Pillar, GOTS, BSCI, and ICMED 13485 certified — we meet the most rigorous international compliance standards for ethical, sustainable, and quality manufacturing." },
+  { icon: "⚡", title: "Speed & Flexibility",         body: "Quick turnaround on sampling and development. We handle both small-batch runs and large-scale production, giving growing brands and established retailers equal agility." },
+  { icon: "🎨", title: "In-House Design Capability", body: "From trend forecasting and CAD creation to fabric surface design and prototype development — our in-house design team delivers complete concept-to-sample solutions." },
+  { icon: "🌿", title: "Sustainable Sourcing",        body: "Organic, BCI, and recycled material sourcing backed by GOTS certification. Environmentally responsible production methods that reduce ecological impact at every stage." },
+  { icon: "🔍", title: "End-to-End Transparency",    body: "Digital ERP systems provide full visibility across the supply chain — clear costing, real-time order tracking, and proactive communication at every production milestone." },
+  { icon: "🌍", title: "Global Export Network",      body: "Proven export expertise to Europe, the Middle East, Southeast Asia, and North America. Full management of international documentation, certifications, and logistics." },
 ];
 
 export default function WhyUs() {
@@ -27,7 +27,7 @@ export default function WhyUs() {
         className="cormorant font-light mb-0"
         style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--cream)" }}
       >
-        The Partner <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>Difference</em>
+        The Sourcing <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>Difference</em>
       </h2>
 
       <div
