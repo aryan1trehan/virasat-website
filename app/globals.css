@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --cream: #F5EFE4;
+  --deep-maroon: #4A0E1E;
+  --gold: #C9933E;
+  --gold-light: #E8B96A;
+  --burnt-sienna: #8B3A2A;
+  --charcoal: #1C1C1C;
+  --text-muted: #7A6A5A;
+  --border: rgba(201, 147, 62, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+}
+
+.cormorant { font-family: 'Cormorant Garamond', serif; }
+.josefin   { font-family: 'Josefin Sans', sans-serif; }
+
+/* Shimmer on italic hero text */
+@keyframes textShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--burnt-sienna) 30%, var(--gold-light) 50%, var(--burnt-sienna) 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 4s linear infinite;
+}
+
+/* Mandala */
+@keyframes rotateSlow    { to { transform: rotate(360deg);  } }
+@keyframes rotateReverse { to { transform: rotate(-360deg); } }
+.mandala-outer { animation: rotateSlow    40s linear infinite; opacity: 0.25; }
+.mandala-inner { animation: rotateReverse 28s linear infinite; opacity: 0.18; position: absolute; inset: 50px; }
+
+/* Hero bg pattern drift */
+@keyframes patternDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* About accent pulse */
+@keyframes accentPulse {
+  0%,100% { opacity: 0.4; transform: scale(1);    }
+  50%     { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* About image sheen */
+@keyframes sheenSweep {
+  0%,100% { left: -100%; }
+  50%     { left:  140%; }
+}
+
+/* Particles */
+@keyframes floatParticle {
+  0%   { opacity: 0;               transform: translateY(0)     scale(0.5); }
+  20%  { opacity: var(--op, 0.2); }
+  80%  { opacity: var(--op, 0.2); }
+  100% { opacity: 0;               transform: translateY(-80px) scale(1.2); }
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0);    }
+  to   { transform: translateX(-50%); }
+}
+
+/* Loader */
+@keyframes loaderFadeIn { to { opacity: 1; } }
+@keyframes loaderLine   { to { width: 160px; } }
+
+/* Scroll-progress bar */
+#scroll-bar {
+  position: fixed; top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 9997;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
