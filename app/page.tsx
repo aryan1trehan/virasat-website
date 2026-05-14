@@ -1,4 +1,3 @@
-import Cursor        from "@/components/Cursor";
 import PageLoader    from "@/components/PageLoader";
 import ScrollProgress from "@/components/ScrollProgress";
 import Nav           from "@/components/Nav";
@@ -15,7 +14,6 @@ import Footer        from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Cursor />
       <PageLoader />
       <ScrollProgress />
       <Nav />
