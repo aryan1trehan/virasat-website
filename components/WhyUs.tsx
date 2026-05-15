@@ -23,7 +23,7 @@ export default function WhyUs() {
       className="px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
       style={{ background: "var(--deep-maroon)", color: "var(--cream)" }}
     >
-      <SectionLabel gold="var(--gold-light)">Why Virasat</SectionLabel>
+      <SectionLabel gold="var(--gold-light)">Why Global Trendwave</SectionLabel>
       <h2
         className="cormorant font-light mb-0"
         style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--cream)" }}
