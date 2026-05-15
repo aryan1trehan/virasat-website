@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "#about",      label: "About"     },
@@ -36,18 +37,16 @@ export default function Nav() {
       }}
     >
       {/* Logo */}
-      <div
-        className="cormorant font-semibold"
-        style={{
-          fontSize: scrolled ? "1.45rem" : "1.7rem",
-          color: "var(--deep-maroon)",
-          letterSpacing: "0.08em",
-          transition: "font-size 0.4s",
-          flexShrink: 0,
-        }}
-      >
-        Global Trendwave<span style={{ color: "var(--gold)" }}>.</span>
-      </div>
+      <a href="#hero" style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
+        <Image
+          src="/logo.png"
+          alt="Global Trendwave"
+          height={scrolled ? 44 : 54}
+          width={scrolled ? 176 : 216}
+          style={{ transition: "height 0.4s, width 0.4s", objectFit: "contain" }}
+          priority
+        />
+      </a>
 
       {/* Links */}
       <ul

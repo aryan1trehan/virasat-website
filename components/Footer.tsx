@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
@@ -10,9 +12,13 @@ export default function Footer() {
         borderTop: "1px solid rgba(201,147,62,0.12)",
       }}
     >
-      <div className="cormorant text-[1.4rem]" style={{ color: "var(--cream)" }}>
-        Global Trendwave<span style={{ color: "var(--gold)" }}>.</span>
-      </div>
+      <Image
+        src="/logo.png"
+        alt="Global Trendwave"
+        height={40}
+        width={160}
+        style={{ objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }}
+      />
       <p
         className="text-[0.68rem] tracking-wider"
         style={{ color: "rgba(245,239,228,0.3)" }}
