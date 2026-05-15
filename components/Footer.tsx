@@ -5,10 +5,9 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer
-      className="flex justify-between items-center"
+      className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-4 items-center text-center md:text-left px-6 py-8 md:px-20"
       style={{
         background: "#0f0508",
-        padding: "40px 80px",
         borderTop: "1px solid rgba(201,147,62,0.12)",
       }}
     >

@@ -18,10 +18,14 @@ export default function Categories() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="categories" style={{ padding: "100px 80px", background: "var(--cream)" }}>
+    <section
+      id="categories"
+      className="px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+      style={{ background: "var(--cream)" }}
+    >
       {/* Header */}
       <motion.div
-        className="flex justify-between items-end mb-14"
+        className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-10 md:mb-14"
         ref={ref}
         initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -36,17 +40,14 @@ export default function Categories() {
             Product <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Collections</em>
           </h2>
         </div>
-        <p className="text-[0.85rem] leading-relaxed max-w-xs" style={{ color: "var(--text-muted)" }}>
+        <p className="text-[0.85rem] leading-relaxed md:max-w-xs" style={{ color: "var(--text-muted)" }}>
           All categories available in bulk wholesale quantities with end-to-end quality
           control, flexible MOQs, and export-ready packaging.
         </p>
       </motion.div>
 
-      {/* Grid */}
-      <div
-        className="grid gap-5"
-        style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
-      >
+      {/* Grid — 2 cols on mobile, 4 cols on md+ */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
         {cats.map((c, i) => (
           <motion.div
             key={c.name}

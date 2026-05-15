@@ -15,7 +15,12 @@ export default function Process() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="process" ref={ref} style={{ padding: "100px 80px", background: "#fff8f0" }}>
+    <section
+      id="process"
+      ref={ref}
+      className="px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+      style={{ background: "#fff8f0" }}
+    >
       <motion.div
         className="text-center mb-0"
         initial={{ opacity: 0, y: 28 }}
@@ -31,10 +36,11 @@ export default function Process() {
         </h2>
       </motion.div>
 
-      <div className="relative grid mt-14" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
-        {/* Connector line */}
+      {/* 2-col on mobile, 4-col on md+ */}
+      <div className="relative grid grid-cols-2 md:grid-cols-4 mt-14 gap-y-10 md:gap-y-0">
+        {/* Connector line — only visible on md+ */}
         <div
-          className="absolute h-px overflow-hidden"
+          className="absolute h-px overflow-hidden hidden md:block"
           style={{ top: 32, left: "8%", right: "8%", background: "var(--border)" }}
         >
           <motion.div
@@ -49,8 +55,7 @@ export default function Process() {
         {steps.map((s, i) => (
           <motion.div
             key={s.num}
-            className="text-center group"
-            style={{ padding: "0 24px" }}
+            className="text-center group px-4 md:px-6"
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.15 * i }}

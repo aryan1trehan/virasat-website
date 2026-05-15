@@ -20,7 +20,8 @@ export default function WhyUs() {
     <section
       id="why"
       ref={ref}
-      style={{ padding: "100px 80px", background: "var(--deep-maroon)", color: "var(--cream)" }}
+      className="px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+      style={{ background: "var(--deep-maroon)", color: "var(--cream)" }}
     >
       <SectionLabel gold="var(--gold-light)">Why Virasat</SectionLabel>
       <h2
@@ -30,10 +31,10 @@ export default function WhyUs() {
         The Sourcing <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>Difference</em>
       </h2>
 
+      {/* 1-col mobile, 2-col tablet, 3-col desktop */}
       <div
-        className="grid mt-14"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-14"
         style={{
-          gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
           background: "rgba(201,147,62,0.15)",
         }}

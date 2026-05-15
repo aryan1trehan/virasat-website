@@ -17,10 +17,8 @@ export default function About() {
   return (
     <section
       id="about"
-      className="grid gap-20 items-center"
+      className="grid items-center px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24 gap-10 md:gap-16 lg:gap-20 grid-cols-1 md:grid-cols-2"
       style={{
-        padding: "100px 80px",
-        gridTemplateColumns: "1fr 1fr",
         background: "#fff8f0",
         borderTop: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",
