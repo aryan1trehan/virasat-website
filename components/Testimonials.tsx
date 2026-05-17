@@ -56,9 +56,9 @@ export default function Testimonials() {
           <motion.div
             key={t.name}
             className="relative group"
+            className="p-6 md:p-9"
             style={{
               border: "1px solid var(--border)",
-              padding: "36px 32px",
               transition: "border-color 0.35s",
             }}
             initial={{ opacity: 0, y: 32 }}

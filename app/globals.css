@@ -50,12 +50,14 @@ body {
   0%   { background-position: 0 0; }
   100% { background-position: 60px 60px; }
 }
+.hero-pattern-anim { animation: patternDrift 8s linear infinite; }
 
 /* About accent pulse */
 @keyframes accentPulse {
   0%,100% { opacity: 0.4; transform: scale(1);    }
   50%     { opacity: 0.7; transform: scale(1.05); }
 }
+.about-accent-pulse { animation: accentPulse 3s ease-in-out infinite; }
 
 /* About image sheen */
 @keyframes sheenSweep {

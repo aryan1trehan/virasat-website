@@ -93,12 +93,12 @@ export default function Contact() {
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
       >
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="First Name" type="text"  placeholder="Ravi" />
             <Field label="Last Name"  type="text"  placeholder="Kumar" />
           </div>
           <Field label="Business / Company Name" type="text" placeholder="Your Store or Brand" />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="Email"   type="email" placeholder="you@company.com" />
             <Field label="Country" type="text"  placeholder="e.g. India, UAE, UK" />
           </div>
@@ -152,7 +152,7 @@ export default function Contact() {
           {/* Submit */}
           <motion.button
             type="submit"
-            className="self-start relative overflow-hidden group mt-1.5 text-[0.72rem] tracking-[0.25em] uppercase font-normal cursor-none"
+            className="w-full sm:w-auto self-start relative overflow-hidden group mt-1.5 text-[0.72rem] tracking-[0.25em] uppercase font-normal cursor-none"
             style={{
               background: sent ? "#4caf50" : "var(--gold)",
               color: "var(--deep-maroon)",

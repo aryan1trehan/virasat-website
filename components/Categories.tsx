@@ -51,8 +51,7 @@ export default function Categories() {
         {cats.map((c, i) => (
           <motion.div
             key={c.name}
-            className="cursor-none group relative overflow-hidden"
-            style={{ gridRow: c.span ? "span 2" : undefined }}
+            className={`cursor-none group relative overflow-hidden${c.span ? " md:row-span-2" : ""}`}
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.05 * i }}
@@ -64,7 +63,7 @@ export default function Categories() {
               className="relative flex items-center justify-center overflow-hidden"
               style={{
                 background: c.bg,
-                aspectRatio: c.span ? "3/7" : "3/4",
+                aspectRatio: "3/4",
               }}
             >
               {/* Pattern */}

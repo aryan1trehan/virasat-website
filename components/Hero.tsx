@@ -32,8 +32,7 @@ export default function Hero() {
       <div className="grid min-h-[calc(100vh-80px)] grid-cols-1 md:grid-cols-2">
         {/* LEFT */}
         <div
-          className="flex flex-col justify-center px-6 py-16 md:px-14 lg:px-20"
-          style={{ paddingTop: "clamp(48px, 8vw, 80px)", paddingBottom: "clamp(48px, 8vw, 80px)" }}
+          className="flex flex-col justify-center px-6 py-12 md:px-14 md:py-20 lg:px-20 lg:py-28"
         >
           {/* Eyebrow */}
           <motion.div
@@ -66,7 +65,7 @@ export default function Hero() {
             animate={mounted ? "visible" : "hidden"}
             className="cormorant font-light mb-7"
             style={{
-              fontSize: "clamp(3.2rem,5vw,5.5rem)",
+              fontSize: "clamp(1.9rem,5vw,5.5rem)",
               lineHeight: 1.08,
               color: "var(--deep-maroon)",
             }}
