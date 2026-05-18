@@ -30,7 +30,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="grid grid-cols-1 md:grid-cols-2 items-start gap-10 md:gap-16 lg:gap-20 px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+      className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-16 lg:gap-24 px-6 py-20 md:px-16 md:py-28 lg:px-20 lg:py-32"
       style={{
         background: "var(--deep-maroon)",
       }}
