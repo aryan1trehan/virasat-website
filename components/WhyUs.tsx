@@ -42,8 +42,7 @@ export default function WhyUs() {
         {cards.map((c, i) => (
           <motion.div
             key={c.title}
-            className="relative overflow-hidden group"
-            className="p-7 md:p-9 lg:p-11"
+            className="relative overflow-hidden group p-7 md:p-9 lg:p-11"
             style={{
               background: "rgba(74,14,30,0.6)",
               transition: "background 0.4s",
