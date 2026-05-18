@@ -55,9 +55,10 @@ export default function Testimonials() {
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
-            className="relative group px-7 py-8 md:px-8 md:py-9"
+            className="relative group"
             style={{
               border: "1px solid var(--border)",
+              padding: "clamp(24px, 3.5vw, 36px) clamp(20px, 3vw, 32px)",
               transition: "border-color 0.35s",
             }}
             initial={{ opacity: 0, y: 32 }}
