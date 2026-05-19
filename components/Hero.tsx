@@ -97,7 +97,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate={mounted ? "visible" : "hidden"}
-            className="flex gap-4 flex-wrap"
+            className="flex gap-4 flex-wrap mt-8"
           >
             <SlideBtn href="#categories">
               View Catalogue
