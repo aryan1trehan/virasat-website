@@ -29,7 +29,6 @@ export default function Nav() {
   return (
     <>
       <nav
-        className="px-6 md:px-[80px]"
         style={{
           position: "fixed",
           top: 0, left: 0, right: 0,
@@ -37,6 +36,8 @@ export default function Nav() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          paddingLeft: 80,
+          paddingRight: 80,
           paddingTop: scrolled ? 14 : 22,
           paddingBottom: scrolled ? 14 : 22,
           background: scrolled ? "rgba(245,239,228,0.97)" : "rgba(245,239,228,0.88)",
