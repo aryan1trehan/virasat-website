@@ -83,6 +83,10 @@ body {
 @keyframes loaderFadeIn { to { opacity: 1; } }
 @keyframes loaderLine   { to { width: 160px; } }
 
+/* Section padding — matches HTML reference */
+.section-pad { padding: 100px 80px; }
+@media (max-width: 768px) { .section-pad { padding: 70px 28px; } }
+
 /* Scroll-progress bar */
 #scroll-bar {
   position: fixed; top: 0; left: 0;

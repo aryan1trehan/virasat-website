@@ -5,22 +5,22 @@ import { motion, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    quote:   "Global Trendwave's design-to-delivery approach is unmatched. Their in-house team understood our brief immediately and the GOTS certification gave us full confidence in the sourcing chain for our European retail clients.",
-    initials:"AK",
-    name:    "Anika Klein",
-    company: "Sourcing Head, Bloom & Thread — Berlin",
+    quote:    "Global Trendwave's design-to-delivery approach is unmatched. Their in-house team understood our brief immediately and the GOTS certification gave us full confidence in the sourcing chain for our European retail clients.",
+    initials: "AK",
+    name:     "Anika Klein",
+    company:  "Sourcing Head, Bloom & Thread — Berlin",
   },
   {
-    quote:   "We needed a partner who could handle ethnic womenswear at scale with consistent quality and shorter lead times. Global Trendwave delivered on every front — their ERP visibility made our planning seamless.",
-    initials:"RM",
-    name:    "Ravi Mehta",
-    company: "Director, Omnika Fashion Group — Mumbai",
+    quote:    "We needed a partner who could handle ethnic womenswear at scale with consistent quality and shorter lead times. Global Trendwave delivered on every front — their ERP visibility made our planning seamless.",
+    initials: "RM",
+    name:     "Ravi Mehta",
+    company:  "Director, Omnika Fashion Group — Mumbai",
   },
   {
-    quote:   "Their OEM capability is exceptional. From tech pack creation to final packaging, the team handled every detail. BSCI certification made on-boarding with our compliance team completely straightforward.",
-    initials:"LB",
-    name:    "Laura Benoit",
-    company: "Buyer, Karl Legrand — Paris",
+    quote:    "Their OEM capability is exceptional. From tech pack creation to final packaging, the team handled every detail. BSCI certification made on-boarding with our compliance team completely straightforward.",
+    initials: "LB",
+    name:     "Laura Benoit",
+    company:  "Buyer, Karl Legrand — Paris",
   },
 ];
 
@@ -32,76 +32,86 @@ export default function Testimonials() {
     <section
       id="testimonials"
       ref={ref}
-      className="px-6 py-24 md:px-16 md:py-32 lg:px-20 lg:py-40"
+      className="section-pad"
       style={{ background: "var(--cream)" }}
     >
       <motion.div
-        className="text-center mb-10 md:mb-14"
+        style={{ textAlign: "center" }}
         initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
       >
         <SectionLabel>Partner Voices</SectionLabel>
         <h2
-          className="cormorant font-light"
-          style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--deep-maroon)" }}
+          className="cormorant"
+          style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", fontWeight: 300, lineHeight: 1.15, color: "var(--deep-maroon)" }}
         >
           What <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Brands</em> Say
         </h2>
       </motion.div>
 
-      {/* 1-col mobile & tablet, 3-col desktop */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 52 }}>
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
-            className="relative group"
+            className="testi-card"
             style={{
               border: "1px solid var(--border)",
-              padding: "clamp(24px, 3.5vw, 36px) clamp(20px, 3vw, 32px)",
-              transition: "border-color 0.35s",
+              padding: "36px 32px",
+              position: "relative",
+              transition: "border-color 0.3s, transform 0.3s",
             }}
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.1 * i }}
-            whileHover={{
-              y: -6,
-              boxShadow: "0 20px 50px rgba(74,14,30,0.1)",
-              borderColor: "var(--gold)",
-              transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-            } as never}
-            data-cursor-hover
+            whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(74,14,30,0.1)", transition: { duration: 0.4 } } as never}
           >
-            {/* Quote mark */}
+            {/* Big quote mark */}
             <span
-              className="cormorant absolute top-3 left-6 leading-none select-none group-hover:opacity-40 transition-opacity duration-350"
-              style={{ fontSize: "5rem", color: "var(--gold)", opacity: 0.2 }}
+              className="cormorant"
+              style={{
+                position: "absolute",
+                top: 12,
+                left: 24,
+                fontSize: "5rem",
+                lineHeight: 1,
+                color: "var(--gold)",
+                opacity: 0.2,
+                pointerEvents: "none",
+                userSelect: "none",
+              }}
             >
               "
             </span>
 
-            <p className="text-[0.88rem] leading-loose mb-6" style={{ color: "var(--text-muted)" }}>
+            <p style={{ fontSize: "0.88rem", lineHeight: 1.85, color: "var(--text-muted)", marginBottom: 24 }}>
               {t.quote}
             </p>
 
-            <div className="flex items-center gap-3.5">
-              <motion.div
-                className="flex items-center justify-center rounded-full flex-shrink-0 cormorant font-semibold"
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <div
+                className="cormorant"
                 style={{
-                  width: 40, height: 40,
+                  width: 40,
+                  height: 40,
                   background: "var(--deep-maroon)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   color: "var(--gold-light)",
                   fontSize: "0.8rem",
+                  fontWeight: 600,
+                  flexShrink: 0,
                 }}
-                whileHover={{ scale: 1.1 }}
               >
                 {t.initials}
-              </motion.div>
+              </div>
               <div>
-                <div className="text-[0.78rem] font-normal tracking-wider" style={{ color: "var(--charcoal)" }}>
+                <div style={{ fontSize: "0.78rem", fontWeight: 400, color: "var(--charcoal)", letterSpacing: "0.06em" }}>
                   {t.name}
                 </div>
-                <div className="text-[0.68rem] tracking-wider" style={{ color: "var(--text-muted)" }}>
+                <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", letterSpacing: "0.08em" }}>
                   {t.company}
                 </div>
               </div>
@@ -109,19 +119,20 @@ export default function Testimonials() {
           </motion.div>
         ))}
       </div>
+
+      <style>{`
+        .testi-card:hover { border-color: var(--gold) !important; }
+      `}</style>
     </section>
   );
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="flex justify-center items-center gap-3 mb-3 text-[0.65rem] tracking-[0.35em] uppercase"
-      style={{ color: "var(--gold)" }}
-    >
-      <span className="block w-7 h-px" style={{ background: "var(--gold)" }} />
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 12, marginBottom: 14, fontSize: "0.65rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--gold)" }}>
+      <span style={{ display: "block", width: 28, height: 1, background: "var(--gold)" }} />
       {children}
-      <span className="block w-7 h-px" style={{ background: "var(--gold)" }} />
+      <span style={{ display: "block", width: 28, height: 1, background: "var(--gold)" }} />
     </div>
   );
 }

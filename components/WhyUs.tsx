@@ -20,90 +20,94 @@ export default function WhyUs() {
     <section
       id="why"
       ref={ref}
-      className="px-6 py-24 md:px-16 md:py-32 lg:px-20 lg:py-40"
+      className="section-pad"
       style={{ background: "var(--deep-maroon)", color: "var(--cream)" }}
     >
-      <SectionLabel gold="var(--gold-light)">Why Global Trendwave</SectionLabel>
+      <SectionLabel>Why Global Trendwave</SectionLabel>
       <h2
-        className="cormorant font-light mb-0"
-        style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", lineHeight: 1.15, color: "var(--cream)" }}
+        className="cormorant"
+        style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", fontWeight: 300, lineHeight: 1.15, color: "var(--cream)", marginBottom: 0 }}
       >
         The Sourcing <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>Difference</em>
       </h2>
 
-      {/* 1-col mobile, 2-col tablet, 3-col desktop */}
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-14"
         style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
           background: "rgba(201,147,62,0.15)",
+          marginTop: 52,
         }}
       >
         {cards.map((c, i) => (
           <motion.div
             key={c.title}
-            className="relative overflow-hidden group"
+            className="why-card group"
             style={{
               background: "rgba(74,14,30,0.6)",
-              padding: "clamp(28px, 4vw, 44px) clamp(24px, 3vw, 36px)",
-              transition: "background 0.4s",
+              padding: "44px 36px",
+              position: "relative",
+              overflow: "hidden",
+              transition: "background 0.3s",
             }}
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.07 * i }}
             whileHover={{ backgroundColor: "rgba(201,147,62,0.08)" } as never}
-            data-cursor-hover
           >
-            {/* Top gold line sweep */}
             <span
-              className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100"
-              style={{ background: "var(--gold)", transition: "transform 0.5s cubic-bezier(0.22,1,0.36,1)" }}
-            />
-            {/* Diagonal shimmer */}
-            <span
-              className="absolute top-[-50%] w-[60%] h-[200%] -skew-x-12 pointer-events-none"
+              className="why-top-line"
               style={{
-                background: "linear-gradient(105deg,transparent 40%,rgba(201,147,62,0.06) 50%,transparent 60%)",
-                left: "-80%",
-                transition: "left 0.6s ease",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 2,
+                background: "var(--gold)",
+                transformOrigin: "left",
+                transform: "scaleX(0)",
+                transition: "transform 0.4s",
               }}
             />
-
-            {/* Icon */}
             <div
-              className="flex items-center justify-center mb-6 text-xl group-hover:scale-110 group-hover:rotate-[5deg]"
               style={{
-                width: 48, height: 48,
+                width: 48,
+                height: 48,
                 border: "1px solid rgba(201,147,62,0.4)",
-                transition: "border-color 0.35s, transform 0.35s",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: 22,
+                fontSize: "1.3rem",
               }}
             >
               {c.icon}
             </div>
-
             <h3
-              className="cormorant font-normal mb-3"
-              style={{ fontSize: "1.4rem", color: "var(--cream)" }}
+              className="cormorant"
+              style={{ fontSize: "1.4rem", fontWeight: 400, color: "var(--cream)", marginBottom: 12 }}
             >
               {c.title}
             </h3>
-            <p
-              className="text-[0.82rem] leading-loose"
-              style={{ color: "rgba(245,239,228,0.6)" }}
-            >
+            <p style={{ fontSize: "0.82rem", lineHeight: 1.8, color: "rgba(245,239,228,0.6)" }}>
               {c.body}
             </p>
           </motion.div>
         ))}
       </div>
+
+      <style>{`
+        .why-card:hover .why-top-line { transform: scaleX(1) !important; }
+      `}</style>
     </section>
   );
 }
 
-function SectionLabel({ children, gold }: { children: React.ReactNode; gold: string }) {
+function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3 mb-3 text-[0.65rem] tracking-[0.35em] uppercase" style={{ color: gold }}>
-      <span className="block w-7 h-px" style={{ background: gold }} />
+    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14, fontSize: "0.65rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--gold-light)" }}>
+      <span style={{ display: "block", width: 28, height: 1, background: "var(--gold-light)" }} />
       {children}
     </div>
   );
