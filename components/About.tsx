@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
@@ -72,23 +73,18 @@ export default function About() {
       >
         <div
           style={{
-            background: "var(--deep-maroon)",
             aspectRatio: "4/5",
             position: "relative",
             overflow: "hidden",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
           }}
         >
-          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.15 }}>
-            <path d="M100 10 L190 100 L100 190 L10 100 Z" stroke="#C9933E" strokeWidth="1.5"/>
-            <path d="M100 40 L160 100 L100 160 L40 100 Z" stroke="#C9933E" strokeWidth="1"/>
-            <circle cx="100" cy="100" r="25" stroke="#C9933E" strokeWidth="1.5"/>
-            <circle cx="100" cy="100" r="8" fill="#C9933E" opacity="0.6"/>
-            <line x1="100" y1="10"  x2="100" y2="190" stroke="#C9933E" strokeWidth="0.5"/>
-            <line x1="10"  y1="100" x2="190" y2="100" stroke="#C9933E" strokeWidth="0.5"/>
-          </svg>
+          <Image
+            src="/about-model.jpg"
+            alt="Ethnic womenswear — Global Trendwave"
+            fill
+            style={{ objectFit: "cover", objectPosition: "center top" }}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
           <div
             className="cormorant"
             style={{
@@ -96,7 +92,7 @@ export default function About() {
               bottom: 0,
               left: 0,
               right: 0,
-              background: "linear-gradient(transparent, rgba(74,14,30,0.9))",
+              background: "linear-gradient(transparent, rgba(74,14,30,0.85))",
               padding: "32px 28px 24px",
               color: "var(--cream)",
               fontSize: "1.4rem",
