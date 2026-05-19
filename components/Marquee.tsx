@@ -1,6 +1,6 @@
 const items = [
-  "Ethnic Womenswear", "Woven Garments", "Home Textiles", "Denim",
-  "Custom OEM / ODM", "Home Décor", "GOTS Certified", "SEDEX 4.0 Certified",
+  "Ethnic Womenswear", "Woven Garments", "Western Garments", "Home Textiles",
+  "Home Décor", "Denim", "Custom OEM / ODM",
 ];
 
 export default function Marquee() {
