@@ -84,12 +84,13 @@ export function generateStaticParams() {
   return collections.map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const col = collections.find((c) => c.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const col = collections.find((c) => c.slug === slug);
   if (!col) return {};
   return {
     title: `${col.name} — Global Trendwave`,
@@ -97,12 +98,13 @@ export function generateMetadata({
   };
 }
 
-export default function CollectionPage({
+export default async function CollectionPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const col = collections.find((c) => c.slug === params.slug);
+  const { slug } = await params;
+  const col = collections.find((c) => c.slug === slug);
   if (!col) notFound();
   return <CollectionView collection={col} />;
 }
