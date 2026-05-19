@@ -29,7 +29,7 @@ export default function Nav() {
   return (
     <>
       <nav
-        className="px-6 md:px-[60px]"
+        className="px-6 md:px-[80px]"
         style={{
           position: "fixed",
           top: 0, left: 0, right: 0,

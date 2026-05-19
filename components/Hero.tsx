@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="grid min-h-[calc(100vh-80px)] grid-cols-1 md:grid-cols-2">
         {/* LEFT */}
         <div
-          className="flex flex-col justify-center px-6 py-12 md:px-14 md:py-16 lg:px-20 lg:py-20"
+          className="flex flex-col justify-center px-6 py-12 md:px-20 md:py-16 lg:px-[80px] lg:py-20"
         >
           {/* Eyebrow */}
           <motion.div
