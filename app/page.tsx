@@ -1,4 +1,3 @@
-import PageLoader    from "@/components/PageLoader";
 import ScrollProgress from "@/components/ScrollProgress";
 import Nav           from "@/components/Nav";
 import Hero          from "@/components/Hero";
@@ -14,7 +13,6 @@ import Footer        from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <PageLoader />
       <ScrollProgress />
       <Nav />
       <main>
