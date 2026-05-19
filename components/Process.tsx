@@ -18,7 +18,7 @@ export default function Process() {
     <section
       id="process"
       ref={ref}
-      className="px-6 py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+      className="px-6 py-24 md:px-16 md:py-32 lg:px-20 lg:py-40"
       style={{ background: "#fff8f0" }}
     >
       <motion.div
