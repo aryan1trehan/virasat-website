@@ -31,10 +31,7 @@ export default function Hero() {
       {/* Responsive grid: single column on mobile, 2-col on md+ */}
       <div className="grid min-h-[calc(100vh-80px)] grid-cols-1 md:grid-cols-2">
         {/* LEFT */}
-        <div
-          className="flex flex-col justify-center py-12 md:py-16 lg:py-20"
-          style={{ paddingLeft: 80, paddingRight: 60 }}
-        >
+        <div className="hero-left-pad flex flex-col justify-center">
           {/* Eyebrow */}
           <motion.div
             custom={0}

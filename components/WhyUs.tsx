@@ -31,15 +31,7 @@ export default function WhyUs() {
         The Sourcing <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>Difference</em>
       </h2>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 1,
-          background: "rgba(201,147,62,0.15)",
-          marginTop: 52,
-        }}
-      >
+      <div className="grid-why">
         {cards.map((c, i) => (
           <motion.div
             key={c.title}

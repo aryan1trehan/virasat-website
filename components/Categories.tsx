@@ -48,7 +48,7 @@ export default function Categories() {
       </motion.div>
 
       {/* Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
+      <div className="grid-4col">
         {cats.map((c, i) => {
           const inner = (
             <>
@@ -103,7 +103,7 @@ export default function Categories() {
           return (
             <motion.div
               key={c.name}
-              className="group"
+              className={`group${c.span ? " cat-span" : ""}`}
               style={{
                 cursor: "pointer",
                 position: "relative",

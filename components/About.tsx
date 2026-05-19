@@ -19,12 +19,8 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="section-pad"
+      className="section-pad grid-2col"
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "80px",
-        alignItems: "center",
         background: "#fff8f0",
         borderTop: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",
@@ -57,7 +53,7 @@ export default function About() {
           from concept to shipment.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28, marginTop: 40 }}>
+        <div className="grid-stats">
           {stats.map((s) => (
             <StatCard key={s.label} display={s.display} label={s.label} inView={inView} />
           ))}

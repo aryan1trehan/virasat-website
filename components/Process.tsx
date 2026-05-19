@@ -36,17 +36,10 @@ export default function Process() {
         </h2>
       </motion.div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 0,
-          marginTop: 52,
-          position: "relative",
-        }}
-      >
+      <div className="grid-process">
         {/* Connector line */}
         <div
+          className="connector-line"
           style={{
             position: "absolute",
             top: 32,

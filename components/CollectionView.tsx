@@ -52,12 +52,8 @@ export default function CollectionView({ collection: c }: { collection: Collecti
 
         {/* ── Hero ── */}
         <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            minHeight: 480,
-            overflow: "hidden",
-          }}
+          className="grid-2col"
+          style={{ minHeight: 480, overflow: "hidden" }}
         >
           {/* Left: text */}
           <motion.div
@@ -65,9 +61,9 @@ export default function CollectionView({ collection: c }: { collection: Collecti
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              padding: "80px 60px 80px 80px",
               background: "var(--cream)",
             }}
+            className="hero-left-pad"
             initial={{ opacity: 0, x: -32 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: EASE }}
@@ -165,7 +161,7 @@ export default function CollectionView({ collection: c }: { collection: Collecti
         </section>
 
         {/* ── Products grid ── */}
-        <section style={{ padding: "80px 80px 100px", background: "#fff8f0" }}>
+        <section className="section-pad" style={{ background: "#fff8f0" }}>
           <motion.div
             style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 52 }}
             initial={{ opacity: 0, y: 24 }}
@@ -187,7 +183,7 @@ export default function CollectionView({ collection: c }: { collection: Collecti
           </motion.div>
 
           {c.products.length > 0 ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+            <div className="grid-4col-lg">
               {c.products.map((p, i) => (
                 <ProductCard key={p.id} product={p} index={i} />
               ))}
@@ -199,9 +195,9 @@ export default function CollectionView({ collection: c }: { collection: Collecti
 
         {/* ── CTA Banner ── */}
         <section
+          className="section-pad"
           style={{
             background: "var(--deep-maroon)",
-            padding: "80px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -306,7 +302,7 @@ function ProductCard({ product: p, index }: { product: import("@/app/collections
 function PlaceholderGrid({ count, bg, icon }: { count: number; bg: string; icon: string }) {
   return (
     <div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+      <div className="grid-4col-lg">
         {Array.from({ length: count }).map((_, i) => (
           <motion.div
             key={i}

@@ -50,7 +50,7 @@ export default function Testimonials() {
         </h2>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 52 }}>
+      <div className="grid-3col" style={{ marginTop: 52 }}>
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}

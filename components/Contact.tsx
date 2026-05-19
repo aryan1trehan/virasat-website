@@ -30,14 +30,8 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="section-pad"
-      style={{
-        background: "var(--deep-maroon)",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 80,
-        alignItems: "start",
-      }}
+      className="section-pad grid-2col-start"
+      style={{ background: "var(--deep-maroon)" }}
     >
       {/* Left */}
       <motion.div
@@ -96,12 +90,12 @@ export default function Contact() {
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
       >
         <form style={{ display: "flex", flexDirection: "column", gap: 16 }} onSubmit={handleSubmit}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="form-row">
             <Field label="First Name" type="text"  placeholder="Ravi" />
             <Field label="Last Name"  type="text"  placeholder="Kumar" />
           </div>
           <Field label="Business / Company Name" type="text" placeholder="Your Store or Brand" />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="form-row">
             <Field label="Email"   type="email" placeholder="you@company.com" />
             <Field label="Country" type="text"  placeholder="e.g. India, UAE, UK" />
           </div>
