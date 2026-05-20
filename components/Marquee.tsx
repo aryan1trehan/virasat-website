@@ -18,7 +18,7 @@ export default function Marquee() {
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="text-[0.75rem] tracking-[0.22em] uppercase px-10"
+            className="text-[0.75rem] tracking-[0.22em] uppercase px-16"
             style={{ color: "var(--deep-maroon)" }}
           >
             {item}
