@@ -152,7 +152,7 @@ export default function ProductGallery({
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 36 }}>
               {[
-                { label: "Style Code", value: p.code },
+                { label: "Fabric", value: p.fabric },
                 { label: "MOQ", value: p.moq },
               ].map(({ label, value }) => (
                 <div key={label} style={{ display: "flex", gap: 16, alignItems: "center", paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>

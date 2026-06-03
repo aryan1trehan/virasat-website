@@ -255,7 +255,7 @@ function ProductCard({ product: p, index, collectionSlug }: { product: import("@
           {p.name}
         </h3>
         <div style={{ display: "flex", gap: 16, fontSize: "0.68rem", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-          <span>{p.code}</span>
+          <span>{p.fabric}</span>
           <span style={{ color: "var(--border)" }}>|</span>
           <span>MOQ {p.moq}</span>
         </div>
