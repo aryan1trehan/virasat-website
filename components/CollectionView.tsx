@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Collection } from "@/app/collections/[slug]/page";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -12,6 +14,7 @@ export default function CollectionView({ collection: c }: { collection: Collecti
     <>
       {/* ── Nav ── */}
       <nav
+        className="nav-pad"
         style={{
           position: "fixed",
           top: 0, left: 0, right: 0,
@@ -19,7 +22,8 @@ export default function CollectionView({ collection: c }: { collection: Collecti
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "18px 60px",
+          paddingTop: 18,
+          paddingBottom: 18,
           background: "rgba(245,239,228,0.95)",
           backdropFilter: "blur(12px)",
           borderBottom: "1px solid var(--border)",
@@ -52,8 +56,8 @@ export default function CollectionView({ collection: c }: { collection: Collecti
 
         {/* ── Hero ── */}
         <section
-          className="grid-2col"
-          style={{ minHeight: 480, overflow: "hidden" }}
+          className="grid-2col cv-hero"
+          style={{ minHeight: 480, overflow: "hidden", gap: 0 }}
         >
           {/* Left: text */}
           <motion.div
@@ -87,7 +91,7 @@ export default function CollectionView({ collection: c }: { collection: Collecti
             <p style={{ fontSize: "0.88rem", lineHeight: 1.85, color: "var(--text-muted)", maxWidth: 420 }}>
               {c.description}
             </p>
-            <div style={{ marginTop: 36, display: "flex", gap: 16 }}>
+            <div className="cv-btn-row" style={{ marginTop: 36, display: "flex", gap: 16, flexWrap: "wrap" }}>
               <a
                 href="/#contact"
                 style={{
@@ -127,27 +131,34 @@ export default function CollectionView({ collection: c }: { collection: Collecti
 
           {/* Right: hero visual */}
           <motion.div
-            style={{ background: c.bg, position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}
+            className="cv-hero-img"
+            style={{ background: c.bg, position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 480 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.1, ease: EASE, delay: 0.1 }}
           >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                opacity: 0.1,
-                backgroundImage: "repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%)",
-                backgroundSize: "18px 18px",
-              }}
-            />
-            <span style={{ fontSize: "8rem", opacity: 0.2, filter: "grayscale(1)" }}>{c.icon}</span>
+            {c.heroImage ? (
+              <Image src={c.heroImage} alt={c.name} fill style={{ objectFit: "cover", objectPosition: "top center" }} />
+            ) : (
+              <>
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    opacity: 0.1,
+                    backgroundImage: "repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%)",
+                    backgroundSize: "18px 18px",
+                  }}
+                />
+                <span style={{ fontSize: "8rem", opacity: 0.2, filter: "grayscale(1)" }}>{c.icon}</span>
+              </>
+            )}
             <div
               className="cormorant"
               style={{
                 position: "absolute",
                 bottom: 0, left: 0, right: 0,
-                background: "linear-gradient(transparent, rgba(0,0,0,0.5))",
+                background: "linear-gradient(transparent, rgba(0,0,0,0.55))",
                 padding: "40px 40px 32px",
                 color: "var(--cream)",
                 fontSize: "1rem",
@@ -163,6 +174,7 @@ export default function CollectionView({ collection: c }: { collection: Collecti
         {/* ── Products grid ── */}
         <section className="section-pad" style={{ background: "#fff8f0" }}>
           <motion.div
+            className="cv-products-header"
             style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 52 }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,14 +190,14 @@ export default function CollectionView({ collection: c }: { collection: Collecti
               </h2>
             </div>
             <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", maxWidth: 320, lineHeight: 1.7, textAlign: "right" }}>
-              Wholesale pricing available on request. MOQs start from 50 units per style.
+              Wholesale pricing available on request. MOQs start from 100 units per colour.
             </p>
           </motion.div>
 
           {c.products.length > 0 ? (
             <div className="grid-4col-lg">
               {c.products.map((p, i) => (
-                <ProductCard key={p.id} product={p} index={i} />
+                <ProductCard key={p.id} product={p} index={i} collectionSlug={c.slug} />
               ))}
             </div>
           ) : (
@@ -193,62 +205,18 @@ export default function CollectionView({ collection: c }: { collection: Collecti
           )}
         </section>
 
-        {/* ── CTA Banner ── */}
-        <section
-          className="section-pad"
-          style={{
-            background: "var(--deep-maroon)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-            gap: 24,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: "0.65rem", letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--gold-light)" }}>
-            <span style={{ width: 28, height: 1, background: "var(--gold-light)", display: "block" }} />
-            Partner With Us
-            <span style={{ width: 28, height: 1, background: "var(--gold-light)", display: "block" }} />
-          </div>
-          <h2
-            className="cormorant"
-            style={{ fontSize: "clamp(2.2rem,3.5vw,3.6rem)", fontWeight: 300, color: "var(--cream)" }}
-          >
-            Ready to Source <em style={{ fontStyle: "italic", color: "var(--gold-light)" }}>{c.name}?</em>
-          </h2>
-          <p style={{ fontSize: "0.88rem", lineHeight: 1.85, color: "rgba(245,239,228,0.65)", maxWidth: 520 }}>
-            Fill our short partner form and receive a personalised wholesale catalogue with
-            tiered pricing, MOQ details, and lead time estimates within 24 hours.
-          </p>
-          <a
-            href="/#contact"
-            style={{
-              background: "var(--gold)",
-              color: "var(--deep-maroon)",
-              padding: "16px 44px",
-              textDecoration: "none",
-              fontSize: "0.72rem",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              fontWeight: 400,
-              marginTop: 8,
-              transition: "background 0.3s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--gold-light)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--gold)")}
-          >
-            Request Catalogue →
-          </a>
-        </section>
+        <Contact />
 
       </main>
+      <Footer />
     </>
   );
 }
 
 /* ── Product card (used when products are added) ── */
-function ProductCard({ product: p, index }: { product: import("@/app/collections/[slug]/page").Product; index: number }) {
+function ProductCard({ product: p, index, collectionSlug }: { product: import("@/app/collections/[slug]/page").Product; index: number; collectionSlug: string }) {
   return (
+    <Link href={`/collections/${collectionSlug}/${p.id}`} style={{ textDecoration: "none" }}>
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
@@ -289,12 +257,11 @@ function ProductCard({ product: p, index }: { product: import("@/app/collections
         <div style={{ display: "flex", gap: 16, fontSize: "0.68rem", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
           <span>{p.code}</span>
           <span style={{ color: "var(--border)" }}>|</span>
-          <span>{p.fabric}</span>
-          <span style={{ color: "var(--border)" }}>|</span>
           <span>MOQ {p.moq}</span>
         </div>
       </div>
     </motion.div>
+    </Link>
   );
 }
 
