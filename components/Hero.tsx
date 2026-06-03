@@ -29,9 +29,11 @@ export default function Hero() {
       style={{ gridTemplateColumns: "1fr", paddingTop: 80 }}
     >
       {/* Responsive grid: single column on mobile, 2-col on md+ */}
-      <div className="grid min-h-[calc(100vh-80px)] grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-[calc(100vh-80px)]">
         {/* LEFT */}
-        <div className="hero-left-pad flex flex-col justify-center">
+        <div className="hero-left-pad flex flex-col justify-between pb-16 md:pb-0">
+          {/* Text content */}
+          <div>
           {/* Eyebrow */}
           <motion.div
             custom={0}
@@ -80,13 +82,14 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate={mounted ? "visible" : "hidden"}
-            className="text-[0.88rem] leading-loose mb-11 max-w-md"
+            className="text-[0.88rem] leading-loose max-w-md"
             style={{ color: "var(--text-muted)" }}
           >
             India's trusted wholesale partner for ethical garment manufacturing,
             ethnic womenswear, woven apparel & home textiles. SEDEX · GOTS · BSCI
             certified. Export-ready across Europe, Middle East & North America.
           </motion.p>
+          </div>
 
           {/* Buttons */}
           <motion.div
@@ -94,7 +97,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate={mounted ? "visible" : "hidden"}
-            className="flex gap-4 flex-wrap mt-8"
+            className="flex gap-3 flex-wrap"
           >
             <SlideBtn href="#categories">
               View Catalogue

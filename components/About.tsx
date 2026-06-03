@@ -40,17 +40,37 @@ export default function About() {
           Crafted in India,<br />
           <em style={{ fontStyle: "italic", color: "var(--burnt-sienna)" }}>Trusted Worldwide</em>
         </h2>
+        <div style={{ margin: "28px 0 16px", display: "inline-block" }}>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            fontSize: "0.65rem",
+            letterSpacing: "0.35em",
+            textTransform: "uppercase",
+            color: "var(--cream)",
+            background: "var(--burnt-sienna)",
+            padding: "8px 18px",
+          }}>
+            <span style={{ width: 20, height: 1, background: "var(--cream)", display: "block" }} />
+            Meet Our Founders
+          </div>
+        </div>
         <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "var(--text-muted)", marginBottom: 18 }}>
-          Global Trendwave Pvt. Ltd. is a premier garment sourcing and manufacturing company
-          founded by Mr. Mayyank Malhotra and Mr. Kishan Maheshwari. With over two decades
-          of combined expertise in the textile and apparel industry, we bridge the gap between
-          global demand and reliable, ethical supply.
+          <strong style={{ color: "var(--deep-maroon)" }}>Mayyank Malhotra</strong> is a NIFT alumnus and seasoned industry leader with over 23 years
+          of experience in the apparel and fashion sector. A former Senior Vice President and ex-Reliance
+          professional, Mayyank has scaled business turnovers from ₹30 crores to ₹500 crores, maintained
+          95% on-time delivery across global categories and led operations at Reliance Brands Ltd and more.
+          His expertise spans strategic sourcing, supply chain optimization, ERP systems (SAP, Navision, Ramco)
+          and international compliance certifications including GOTS, OEKO-TEX, EDEX and BSCI.
         </p>
         <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "var(--text-muted)" }}>
-          Headquartered in New Delhi and Jaipur with a manufacturing unit in Gurugram, we
-          serve leading ethnic womenswear retailers across India and international export
-          clients — delivering cost-effective, sustainable, and design-forward solutions
-          from concept to shipment.
+          <strong style={{ color: "var(--deep-maroon)" }}>Kishan Maheshwari</strong> is a NIFT graduate with over 18 years of hands-on experience
+          in garment manufacturing and the open market. Having worked with industry giants like Reliance,
+          Nykaa, Libas, Fashor, Janasya, Aachoo, and Sweet Dreams, Kishan brings deep factory-floor
+          expertise and a sharp understanding of what India's wholesale market truly needs. His vision is
+          simple yet powerful — to reach every wholesaler in India with products that reflect the latest
+          global trends.
         </p>
 
         <div className="grid-stats">
@@ -68,6 +88,7 @@ export default function About() {
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
       >
         <div
+          className="about-img-wrap"
           style={{
             aspectRatio: "4/5",
             position: "relative",
@@ -81,22 +102,6 @@ export default function About() {
             style={{ objectFit: "cover", objectPosition: "center top" }}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div
-            className="cormorant"
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              background: "linear-gradient(transparent, rgba(74,14,30,0.85))",
-              padding: "32px 28px 24px",
-              color: "var(--cream)",
-              fontSize: "1.4rem",
-              fontStyle: "italic",
-            }}
-          >
-            Ethical Manufacturing Since 1999
-          </div>
         </div>
         <div
           className="about-accent-pulse"

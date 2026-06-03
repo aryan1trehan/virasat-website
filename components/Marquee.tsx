@@ -1,6 +1,5 @@
 const items = [
-  "Ethnic Womenswear", "Woven Garments", "Western Garments", "Home Textiles",
-  "Home Décor", "Denim", "Custom OEM / ODM",
+  "Ethnic Womenswear", "Co-ord Sets", "Tops", "Dresses",
 ];
 
 export default function Marquee() {

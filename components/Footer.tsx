@@ -24,20 +24,6 @@ export default function Footer() {
       >
         © 2025 Global Trendwave Pvt. Ltd. · All rights reserved.
       </p>
-      <div className="flex gap-6">
-        {["Privacy", "Terms", "Website"].map((l) => (
-          <a
-            key={l}
-            href="#"
-            className="text-[0.65rem] tracking-[0.15em] uppercase no-underline"
-            style={{ color: "rgba(245,239,228,0.4)", transition: "color 0.3s" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,239,228,0.4)")}
-          >
-            {l}
-          </a>
-        ))}
-      </div>
     </footer>
   );
 }

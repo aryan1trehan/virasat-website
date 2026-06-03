@@ -5,22 +5,28 @@ import { motion, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    quote:    "Global Trendwave's design-to-delivery approach is unmatched. Their in-house team understood our brief immediately and the GOTS certification gave us full confidence in the sourcing chain for our European retail clients.",
-    initials: "AK",
-    name:     "Anika Klein",
-    company:  "Sourcing Head, Bloom & Thread — Berlin",
+    quote:    "As a brand, we are particular about quality and finishing because every piece reflects our identity. Global Trendwave has consistently delivered production that meets our standards while ensuring timelines are never compromised. Their understanding of fabrics, craftsmanship, and production planning makes them a partner we can rely on.",
+    initials: "RH",
+    name:     "Rimjhim Hada",
+    company:  "Co-Founder, Aachho",
   },
   {
-    quote:    "We needed a partner who could handle ethnic womenswear at scale with consistent quality and shorter lead times. Global Trendwave delivered on every front — their ERP visibility made our planning seamless.",
-    initials: "RM",
-    name:     "Ravi Mehta",
-    company:  "Director, Omnika Fashion Group — Mumbai",
+    quote:    "Scaling a fashion brand requires manufacturing partners who can deliver consistency at every stage. Global Trendwave has been instrumental in maintaining product quality, fit accuracy, and timely deliveries across production cycles. Their professionalism and commitment to excellence have made them a trusted extension of our supply chain.",
+    initials: "SK",
+    name:     "Sidhant Keshwani",
+    company:  "CEO, Libas",
   },
   {
-    quote:    "Their OEM capability is exceptional. From tech pack creation to final packaging, the team handled every detail. BSCI certification made on-boarding with our compliance team completely straightforward.",
-    initials: "LB",
-    name:     "Laura Benoit",
-    company:  "Buyer, Karl Legrand — Paris",
+    quote:    "Fashion moves fast and manufacturing needs to keep up. What we appreciate about Global Trendwave is their responsiveness and attention to detail. Whether it's fabric quality, finishing, or meeting tight deadlines, they've always approached every order with professionalism and accountability.",
+    initials: "VK",
+    name:     "Vikram Kankaria",
+    company:  "Founder, FASHOR",
+  },
+  {
+    quote:    "The success of a fashion collection often depends on the strength of the manufacturing behind it. Global Trendwave has consistently delivered high-quality products with excellent finishing, dependable timelines, and smooth communication throughout the production process. Their team understands the importance of getting every detail right.",
+    initials: "SS",
+    name:     "Sanjay Kumar Singh",
+    company:  "Director, Feather Touch",
   },
 ];
 
@@ -50,7 +56,7 @@ export default function Testimonials() {
         </h2>
       </motion.div>
 
-      <div className="grid-3col" style={{ marginTop: 52 }}>
+      <div className="grid-2col" style={{ marginTop: 52 }}>
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
